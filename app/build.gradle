@@ -47,7 +47,17 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
 
 
-    // additinal library
+
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:28.4.0')
+
+    // Declare the dependencies for the Firebase Cloud Messaging and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    // Firebase SDK
+    implementation 'com.google.firebase:firebase-core:19.0.1'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-analytics'
+
     implementation 'com.google.android.material:material:1.4.0'
 
 
@@ -56,5 +66,5 @@ dependencies {
 
 
     /** REMON SDK **/
-    implementation 'com.captionvideocall:sdk:2.7.2'
+    implementation 'com.remotemonster:sdk:2.7.2'
 }

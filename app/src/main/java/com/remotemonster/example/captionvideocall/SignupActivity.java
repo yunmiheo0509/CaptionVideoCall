@@ -29,7 +29,7 @@ public class SignupActivity extends AppCompatActivity {
         binding.btnSignup.setOnClickListener(view -> {
             retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
-            Call<JsonObject> call = retrofitService.getLoginCheck(binding.etId.getText().toString(),
+            Call<JsonObject> call = retrofitService.getRegister(binding.etId.getText().toString(),
                     binding.etPw.getText().toString());
 
             call.enqueue(new Callback<JsonObject>() {

@@ -12,4 +12,11 @@ public interface RetrofitService {
     @POST(Common.LoginURL)
     Call<JsonObject> getLoginCheck(@Field("user_id") String user_id,
                                    @Field("password") String password);
+
+
+    @FormUrlEncoded
+    @POST(Common.RegisterURL)
+    Call<JsonObject> getRegister(@Field("user_id") String user_id,
+                                   @Field("password") String password);
+
 }
