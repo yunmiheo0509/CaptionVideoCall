@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                         JsonObject jsonObject = response.body();
 
 
+
                         Toast.makeText(LoginActivity.this, "로그인 되었습니다.".toString(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);

@@ -6,7 +6,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.remotemonster.example.captionvideocall"
+        applicationId "com.captionvideocall.example.captionvideocall"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -54,7 +54,7 @@ dependencies {
 
 
     /** REMON SDK **/
-    implementation 'com.remotemonster:sdk:2.7.2'
+    implementation 'com.captionvideocall:sdk:2.7.2'
 
 
 
