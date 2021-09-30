@@ -40,7 +40,7 @@ public class FirebaseMessagingIDService extends FirebaseMessagingService {
 //            String messageTitle = remoteMessage.getNotification().getTitle();
             String user_id = remoteMessage.getData().get("user_id");
             String room_num = remoteMessage.getData().get("room_num");
-
+            Log.d("파이어베이스나온", user_id + room_num);
             Intent intent = new Intent(this, NotifyCallActivity.class);
             intent.putExtra("user_id", user_id);
             intent.putExtra("room_num", room_num);
@@ -48,7 +48,7 @@ public class FirebaseMessagingIDService extends FirebaseMessagingService {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             getApplicationContext().startActivity(intent);
-
+            Log.d("스타트 액티비티", user_id + room_num);
 //            Intent intent = new Intent(this, MainActivity.class);
 //            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
@@ -69,6 +69,9 @@ public class FirebaseMessagingIDService extends FirebaseMessagingService {
 //                notificationManager.createNotificationChannel(channel);
 //            }
 //            notificationManager.notify(0, notificationBuilder.build());
+        }
+        else{
+            Log.d("파이어베이스나온 오류오류오류","엘즈문 ");
         }
 
     }

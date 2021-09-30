@@ -9,7 +9,9 @@ import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitService;
 import com.captionvideocall.example.captionvideocall.databinding.ActivityLoginBinding;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -26,7 +28,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+// 퍼미션 체크를 위한 루틴입니다.
+        checkPermission();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.btnLogin.setOnClickListener(view -> {
             retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
@@ -65,5 +68,27 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(intent);
         });
+    }
+
+    // 권한을 체크합니다.
+    // 사용자에게 필수로 권한을 확인받아야 하는  요소는 CAMERA,RECORD_AUDIO,WRITE_EXTERNAL_STORAGE 입니다
+    @SuppressLint("NewApi")
+    private void checkPermission() {
+        String[] MANDATORY_PERMISSIONS = {
+                "android.permission.INTERNET",
+                "android.permission.CAMERA",
+                "android.permission.RECORD_AUDIO",
+                "android.permission.MODIFY_AUDIO_SETTINGS",
+                "android.permission.ACCESS_NETWORK_STATE",
+                "android.permission.CHANGE_WIFI_STATE",
+                "android.permission.ACCESS_WIFI_STATE",
+                "android.permission.READ_PHONE_STATE",
+                "android.permission.BLUETOOTH",
+                "android.permission.BLUETOOTH_ADMIN",
+                "android.permission.WRITE_EXTERNAL_STORAGE"
+        };
+        if (Build.VERSION.SDK_INT >= 23) {
+            requestPermissions(MANDATORY_PERMISSIONS, 100);
+        }
     }
 }

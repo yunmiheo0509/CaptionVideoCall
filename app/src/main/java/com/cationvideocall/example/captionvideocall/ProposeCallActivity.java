@@ -48,12 +48,15 @@ public class ProposeCallActivity extends AppCompatActivity {
                         String code = jsonObject.get("code").toString();
                         Log.d("code: ",code);
                         if(!code.equals("205")){
-                            String roomNum = jsonObject.getAsJsonObject("room_num").toString();
-                            Log.d("room_num: ", roomNum);
+                            String room_num = jsonObject.get("room_num").toString();
+                            Log.d("room_num: ", room_num);
+                            Intent intent1 = new Intent(ProposeCallActivity.this, MainActivity.class);
+                            intent1.putExtra("user_id", user_id);
+                            intent1.putExtra("room_num", room_num);
+                            startActivity(intent1);
+                            finish();
                         }
-
                     } else {
-
                         Log.d("오류발생", response.message());
                     }
                 }

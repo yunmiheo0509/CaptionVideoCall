@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        String user_id = intent.getExtras().getString("user_id");
+        String room_num = intent.getExtras().getString("room_num");
 
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         // bind activity layout
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         // 퍼미션 체크를 위한 루틴입니다.
-        checkPermission();
+//        checkPermission();
         // 레이아웃 조절을 위해 activity_main.xml의 constraint 정보를 저장해 둡니다.
         constraintSet = new ConstraintSet();
 
@@ -62,27 +66,36 @@ public class MainActivity extends AppCompatActivity {
         defaultConstraintSet.clone(binding.constraintLayout);
 
         updateView(false);
+        // RemonCall 초기화
+        initRemonCall();
+
+        // RemonCall 연결
+        remonCall.connect(room_num);
+
+        binding.btnConnect.setEnabled(false);
+        binding.btnClose.setEnabled(true);
 
         // 버튼 이벤트 연결
         // 연결, 종료 버튼 클릭이벤트를 정의합니다.
         // 연결 버튼 클릭시 RemonCall 을 초기화하고, connect(채널명) 메쏘드를 호출합니다.
-        binding.btnConnect.setOnClickListener(view -> {
-            if (binding.etChannelName.getText().toString().isEmpty()) {
-                Snackbar.make(binding.rootLayout, "채널명을 입력하세요.", Snackbar.LENGTH_SHORT).show();
-            } else {
-                inputMethodManager.hideSoftInputFromWindow(binding.etChannelName.getWindowToken(), 0);
-                binding.etChannelName.clearFocus();
+//        binding.btnConnect.setOnClickListener(view -> {
+//            if (binding.etChannelName.getText().toString().isEmpty()) {
+//                Snackbar.make(binding.rootLayout, "채널명을 입력하세요.", Snackbar.LENGTH_SHORT).show();
+//            } else {
+//                inputMethodManager.hideSoftInputFromWindow(binding.etChannelName.getWindowToken(), 0);
+//                binding.etChannelName.clearFocus();
+//
+//                // RemonCall 초기화
+//                initRemonCall();
+//
+//                // RemonCall 연결
+//                remonCall.connect(binding.etChannelName.getText().toString());
+//
+//                binding.btnConnect.setEnabled(false);
+//                binding.btnClose.setEnabled(true);
+//            }
+//        });
 
-                // RemonCall 초기화
-                initRemonCall();
-
-                // RemonCall 연결
-                remonCall.connect(binding.etChannelName.getText().toString());
-
-                binding.btnConnect.setEnabled(false);
-                binding.btnClose.setEnabled(true);
-            }
-        });
 
         // 종료 버튼 클릭시 RemonCall 의 close() 메쏘드를 호출합니다.
         binding.btnClose.setOnClickListener(view -> {
