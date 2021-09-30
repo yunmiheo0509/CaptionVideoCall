@@ -10,10 +10,10 @@ import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.JsonObject;
-import com.remotemonster.example.captionvideocall.R;
+import com.captionvideocall.example.captionvideocall.R;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitService;
-import com.remotemonster.example.captionvideocall.databinding.ActivitySignupBinding;
+import com.captionvideocall.example.captionvideocall.databinding.ActivitySignupBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;

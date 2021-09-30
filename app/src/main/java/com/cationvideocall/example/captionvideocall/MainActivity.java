@@ -18,8 +18,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.remotemonster.example.captionvideocall.R;
-import com.remotemonster.example.captionvideocall.databinding.ActivityMainBinding;
+import com.captionvideocall.example.captionvideocall.R;
+import com.captionvideocall.example.captionvideocall.databinding.ActivityMainBinding;
 import com.remotemonster.sdk.RemonCall;
 import com.remotemonster.sdk.RemonException;
 import com.remotemonster.sdk.data.CloseType;
