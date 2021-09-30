@@ -17,6 +17,10 @@ public interface RetrofitService {
     Call<JsonObject> getRegister(@Field("user_id") String user_id,
                                    @Field("password") String password,
                                    @Field("token") String token);
+    @FormUrlEncoded
+    @POST(Common.proposeURL)
+    Call<JsonObject> getPropose(@Field("user_id") String user_id,
+                                 @Field("counter_id") String counter_id);
 
 
     @FormUrlEncoded
