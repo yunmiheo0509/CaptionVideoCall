@@ -1,4 +1,4 @@
-package com.remotemonster.example.captionvideocall;
+package com.cationvideocall.example.captionvideocall;
 
 import org.junit.Test;
 

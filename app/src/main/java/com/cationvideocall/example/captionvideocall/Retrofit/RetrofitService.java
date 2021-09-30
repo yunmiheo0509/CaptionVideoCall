@@ -1,4 +1,4 @@
-package com.remotemonster.example.captionvideocall;
+package com.cationvideocall.example.captionvideocall.Retrofit;
 
 import com.google.gson.JsonObject;
 
@@ -17,6 +17,7 @@ public interface RetrofitService {
     @FormUrlEncoded
     @POST(Common.RegisterURL)
     Call<JsonObject> getRegister(@Field("user_id") String user_id,
-                                   @Field("password") String password);
+                                   @Field("password") String password,
+                                   @Field("token") String token);
 
 }

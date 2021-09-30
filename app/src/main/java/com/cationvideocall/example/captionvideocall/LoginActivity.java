@@ -1,35 +1,38 @@
-package com.remotemonster.example.captionvideocall;
+package com.cationvideocall.example.captionvideocall;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
+;
 import androidx.databinding.DataBindingUtil;
+
+import com.google.gson.JsonObject;
+import com.remotemonster.example.captionvideocall.R;
+import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
+import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitService;
+import com.remotemonster.example.captionvideocall.databinding.ActivityLoginBinding;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
-import com.remotemonster.example.captionvideocall.databinding.ActivitySignupBinding;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignupActivity extends AppCompatActivity {
-    private ActivitySignupBinding binding;
+
+public class LoginActivity extends AppCompatActivity {
+    private ActivityLoginBinding binding;
     private RetrofitService retrofitService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_login);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
-
-
-        binding.btnSignup.setOnClickListener(view -> {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        binding.btnLogin.setOnClickListener(view -> {
             retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
-            Call<JsonObject> call = retrofitService.getRegister(binding.etId.getText().toString(),
+            Call<JsonObject> call = retrofitService.getLoginCheck(binding.etId.getText().toString(),
                     binding.etPw.getText().toString());
 
             call.enqueue(new Callback<JsonObject>() {
@@ -38,13 +41,15 @@ public class SignupActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Log.d("연결 성공", response.message());
                         JsonObject jsonObject = response.body();
-                        Log.d("회원가입성공:", jsonObject.toString());
-                        Toast.makeText(SignupActivity.this, "로그인 되었습니다.".toString(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+
+
+
+                        Toast.makeText(LoginActivity.this, "로그인 되었습니다.".toString(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        Toast.makeText(SignupActivity.this, "아이디와 비밀번호를 확인해주세요"
+                        Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 확인해주세요"
                                 , Toast.LENGTH_SHORT).show();
 
                         Log.d("ssss", response.message());
@@ -56,6 +61,12 @@ public class SignupActivity extends AppCompatActivity {
                     Log.d("ssss", t.getMessage());
                 }
             });
+        });
+
+        //회원가입버튼 클릭시
+        binding.btnResgist.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            startActivity(intent);
         });
     }
 }
