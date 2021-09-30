@@ -1,7 +1,6 @@
 package com.cationvideocall.example.captionvideocall;
 
-import androidx.appcompat.app.AppCompatActivity
-;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.gson.JsonObject;

@@ -9,7 +9,7 @@
     tools:context="com.cationvideocall.example.captionvideocall.NotifyCallActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imv_rejectCall"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginStart="16dp"
@@ -17,17 +17,17 @@
         android:background="#FF5722"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imv_getCall"
         app:srcCompat="@android:drawable/sym_call_missed" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imv_getCall"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginStart="84dp"
         android:background="#8BC34A"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imv_rejectCall"
         app:srcCompat="@android:drawable/stat_sys_phone_call" />
 
     <TextView

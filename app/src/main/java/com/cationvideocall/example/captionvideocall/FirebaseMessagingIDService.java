@@ -35,41 +35,52 @@ public class FirebaseMessagingIDService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if (remoteMessage != null && remoteMessage.getData().size() > 0) {
-            String messageBody = remoteMessage.getNotification().getBody();
-            String messageTitle = remoteMessage.getNotification().getTitle();
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-            String channelId = "Chanel ID";
-            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            NotificationCompat.Builder notificationBuilder =
-                    new NotificationCompat.Builder(this, channelId)
-                            .setSmallIcon(R.mipmap.ic_launcher)
-                            .setContentTitle(messageTitle)
-                            .setContentText(messageBody)
-                            .setAutoCancel(true)
-                            .setSound(defaultSoundUri)
-                            .setContentIntent(pendingIntent);
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                String channelName = "Channel Name";
-                NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
-                notificationManager.createNotificationChannel(channel);
-            }
-            notificationManager.notify(0, notificationBuilder.build());
+//            String messageBody = remoteMessage.getNotification().getBody();
+//            String messageTitle = remoteMessage.getNotification().getTitle();
+            String user_id = remoteMessage.getData().get("user_id");
+            String room_num = remoteMessage.getData().get("room_num");
+
+            Intent intent = new Intent(this, NotifyCallActivity.class);
+            intent.putExtra("user_id", user_id);
+            intent.putExtra("room_num", room_num);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            getApplicationContext().startActivity(intent);
+
+//            Intent intent = new Intent(this, MainActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+//            String channelId = "Chanel ID";
+//            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//            NotificationCompat.Builder notificationBuilder =
+//                    new NotificationCompat.Builder(this, channelId)
+//                            .setSmallIcon(R.mipmap.ic_launcher)
+//                            .setContentTitle(messageTitle)
+//                            .setContentText(messageBody)
+//                            .setAutoCancel(true)
+//                            .setSound(defaultSoundUri)
+//                            .setContentIntent(pendingIntent);
+//            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                String channelName = "Channel Name";
+//                NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+//                notificationManager.createNotificationChannel(channel);
+//            }
+//            notificationManager.notify(0, notificationBuilder.build());
         }
 
     }
 
-    /**
-     * remoteMessage 메세지 안애 getData와 getNotification이 있습니다.
-     *
-     * **/
-    private void sendNotification(RemoteMessage remoteMessage) {
-
-        String title = remoteMessage.getData().get("title");
-        String message = remoteMessage.getData().get("message");
-
-    }
+//    /**
+//     * remoteMessage 메세지 안애 getData와 getNotification이 있습니다.
+//     *
+//     * **/
+//    private void sendNotification(RemoteMessage remoteMessage) {
+//
+//        String title = remoteMessage.getData().get("title");
+//        String message = remoteMessage.getData().get("message");
+//
+//    }
 
 }

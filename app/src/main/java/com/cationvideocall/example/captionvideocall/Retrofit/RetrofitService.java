@@ -1,7 +1,5 @@
 package com.cationvideocall.example.captionvideocall.Retrofit;
 
-import com.google.gson.JsonObject;
-
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -10,7 +8,7 @@ import retrofit2.http.POST;
 public interface RetrofitService {
     @FormUrlEncoded
     @POST(Common.LoginURL)
-    Call<JsonObject> getLoginCheck(@Field("user_id") String user_id,
+    Call<JSONObject> getLoginCheck(@Field("user_id") String user_id,
                                    @Field("password") String password);
 
 
@@ -19,5 +17,10 @@ public interface RetrofitService {
     Call<JsonObject> getRegister(@Field("user_id") String user_id,
                                    @Field("password") String password,
                                    @Field("token") String token);
+
+
+    @FormUrlEncoded
+    @POST(Common.AcceptURL)
+    Call<JsonObject> getAccept(@Field("user_id") String user_id);
 
 }
