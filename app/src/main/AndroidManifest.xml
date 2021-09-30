@@ -25,6 +25,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CaptionVideoCall">
         <activity
+            android:name="com.cationvideocall.example.captionvideocall.ProposeCallActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.cationvideocall.example.captionvideocall.MainActivity"
+            android:exported="true" />
+        <activity
             android:name="com.cationvideocall.example.captionvideocall.NotifyCallActivity"
             android:exported="true" />
         <activity

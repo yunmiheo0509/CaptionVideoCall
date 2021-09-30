@@ -41,24 +41,22 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Log.d("연결 성공", response.message());
                         JsonObject jsonObject = response.body();
-
-
-
-                        Toast.makeText(LoginActivity.this, "로그인 되었습니다.".toString(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Toast.makeText(LoginActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, ProposeCallActivity.class);
+                        intent.putExtra("user_id",binding.etId.getText().toString());
                         startActivity(intent);
                         finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 확인해주세요"
                                 , Toast.LENGTH_SHORT).show();
 
-                        Log.d("ssss", response.message());
+                        Log.d("오류발생", response.message());
                     }
                 }
 
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
-                    Log.d("ssss", t.getMessage());
+                    Log.d("통신실패", t.getMessage());
                 }
             });
         });

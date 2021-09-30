@@ -1,5 +1,8 @@
 package com.cationvideocall.example.captionvideocall;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -8,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.JsonObject;
 import com.captionvideocall.example.captionvideocall.R;
@@ -22,17 +27,30 @@ import retrofit2.Response;
 public class SignupActivity extends AppCompatActivity {
     private ActivitySignupBinding binding;
     private RetrofitService retrofitService;
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
 
+                        // Get new FCM registration token
+                        token = task.getResult();
+                    }
+                });
 
         binding.btnSignup.setOnClickListener(view -> {
             retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
-            String token = FirebaseMessaging.getInstance().getToken().getResult();
+
             Call<JsonObject> call = retrofitService.getRegister(binding.etId.getText().toString(),
                     binding.etPw.getText().toString(),token);
 
@@ -43,7 +61,7 @@ public class SignupActivity extends AppCompatActivity {
                         Log.d("연결 성공", response.message());
                         JsonObject jsonObject = response.body();
                         Log.d("회원가입성공:", jsonObject.toString());
-                        Toast.makeText(SignupActivity.this, "로그인 되었습니다.".toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
