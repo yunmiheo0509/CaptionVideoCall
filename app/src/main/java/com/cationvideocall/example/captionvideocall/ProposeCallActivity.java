@@ -6,10 +6,8 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.captionvideocall.example.captionvideocall.R;
-import com.captionvideocall.example.captionvideocall.databinding.ActivityMainBinding;
 import com.captionvideocall.example.captionvideocall.databinding.ActivityProposeCallBinding;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitService;
@@ -50,7 +48,7 @@ public class ProposeCallActivity extends AppCompatActivity {
                         if(!code.equals("205")){
                             String room_num = jsonObject.get("room_num").toString();
                             Log.d("room_num: ", room_num);
-                            Intent intent1 = new Intent(ProposeCallActivity.this, MainActivity.class);
+                            Intent intent1 = new Intent(ProposeCallActivity.this, OnCallActivity.class);
                             intent1.putExtra("user_id", user_id);
                             intent1.putExtra("room_num", room_num);
                             startActivity(intent1);

@@ -14,7 +14,8 @@
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="false" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -23,13 +24,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CaptionVideoCall">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity
+            android:name="com.cationvideocall.example.captionvideocall.MainActivity"
+            android:exported="true" />
         <activity
             android:name="com.cationvideocall.example.captionvideocall.ProposeCallActivity"
             android:exported="true" />
         <activity
-            android:name="com.cationvideocall.example.captionvideocall.MainActivity"
-            android:exported="true" />
+            android:name="com.cationvideocall.example.captionvideocall.OnCallActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
         <activity
             android:name="com.cationvideocall.example.captionvideocall.NotifyCallActivity"
             android:exported="true" />
@@ -39,11 +49,11 @@
         <activity
             android:name="com.cationvideocall.example.captionvideocall.LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <service

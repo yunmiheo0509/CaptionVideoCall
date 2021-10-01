@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -45,7 +44,7 @@ public class NotifyCallActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Log.d("연결 성공", response.message());
                         JsonObject jsonObject = response.body();
-                        Intent intent1 = new Intent(NotifyCallActivity.this, MainActivity.class);
+                        Intent intent1 = new Intent(NotifyCallActivity.this, OnCallActivity.class);
                         intent1.putExtra("user_id", user_id);
                         intent1.putExtra("room_num", room_num);
                         startActivity(intent1);

@@ -3,42 +3,55 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.cationvideocall.example.captionvideocall.NotifyCallActivity">
 
-    <ImageView
-        android:id="@+id/imv_rejectCall"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="150dp"
-        android:background="#FF5722"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imv_getCall"
-        app:srcCompat="@android:drawable/sym_call_missed" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F8F4"
+        tools:context="com.cationvideocall.example.captionvideocall.NotifyCallActivity">
 
-    <ImageView
-        android:id="@+id/imv_getCall"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="84dp"
-        android:background="#8BC34A"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imv_rejectCall"
-        app:srcCompat="@android:drawable/stat_sys_phone_call" />
+        <ImageView
+            android:id="@+id/imv_rejectCall"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="132dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/redcall"
+            tools:srcCompat="@drawable/redcall" />
 
-    <TextView
-        android:id="@+id/tv_whoCall"
-        android:layout_width="176dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="120dp"
-        android:text="김영웅"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/imv_getCall"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imv_rejectCall"
+            app:srcCompat="@drawable/call"
+            tools:srcCompat="@drawable/call" />
+
+        <TextView
+            android:id="@+id/tv_whoCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.289"
+            tools:text="작은아들" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="88dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
