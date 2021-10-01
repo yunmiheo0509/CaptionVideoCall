@@ -10,4 +10,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+<!--    rounded_text_view-->
+    <color name="rounded_text_view_stroke">#94A3B8</color>
+
+<!--    main color-->
+    <color name="main">#14B8A6</color>
+
 </resources>

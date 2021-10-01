@@ -44,9 +44,9 @@ public class OnCallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_call);
         Intent intent = getIntent();
-//        String user_id = intent.getExtras().getString("user_id");
-//        String room_num = intent.getExtras().getString("room_num");
-       String user_id = "작은아들";String room_num="5020";
+        String user_id = intent.getExtras().getString("user_id");
+        String room_num = intent.getExtras().getString("room_num");
+//       String user_id = "작은아들";String room_num="5020";
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
