@@ -4,10 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_button.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_layout.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_text_view.xml" value="0.1984375" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/setcorner.xml" value="0.1984375" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_main.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_notify_call.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_on_call.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_propose_call.xml" value="0.18229166666666666" />

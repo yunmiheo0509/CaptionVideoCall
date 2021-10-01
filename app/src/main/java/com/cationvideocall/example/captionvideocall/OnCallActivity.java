@@ -43,10 +43,14 @@ public class OnCallActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_call);
+
+        // 영웅 추가 - 권한 설정
+       checkPermission();
+
         Intent intent = getIntent();
-        String user_id = intent.getExtras().getString("user_id");
-        String room_num = intent.getExtras().getString("room_num");
-//       String user_id = "작은아들";String room_num="5020";
+//        String user_id = intent.getExtras().getString("user_id");
+//        String room_num = intent.getExtras().getString("room_num");
+       String user_id = "작은아들";String room_num="5020";
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -197,7 +201,7 @@ public class OnCallActivity extends AppCompatActivity {
     // SDK가 아닌 서비스와 관련한 부분으로 참고용도로 살펴보시기 바랍니다.
     private void updateView(Boolean isConnected) {
 
-        changeConstraints(isConnected);
+//        changeConstraints(isConnected);
 
         // 로컬뷰의 이미지뷰 해당 이미지 끄기
         for (int j = 0; j < binding.layoutLocal.getChildCount(); j++) {
@@ -238,7 +242,6 @@ public class OnCallActivity extends AppCompatActivity {
 
         TransitionManager.beginDelayedTransition(binding.constraintLayout, transition);
         constraintSet.applyTo(binding.constraintLayout);
-
     }
 
     // 권한을 체크합니다.
