@@ -1,4 +1,4 @@
-package com.cationvideocall.example.captionvideocall;
+package com.cationvideocall.example.captionvideocall.Activity;
 
 import static android.content.ContentValues.TAG;
 

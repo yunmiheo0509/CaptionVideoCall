@@ -26,7 +26,8 @@ public interface RetrofitService {
 
 
     @FormUrlEncoded
-    @POST(Common.AcceptURL)
-    Call<JsonObject> getAccept(@Field("user_id") String user_id);
+    @POST(Common.ResponseURL)
+    Call<JsonObject> getResponse(@Field("user_id") String user_id,
+                               @Field("response") boolean response);
 
 }

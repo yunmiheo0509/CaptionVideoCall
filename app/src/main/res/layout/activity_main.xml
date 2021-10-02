@@ -2,70 +2,314 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.cationvideocall.example.captionvideocall.MainActivity">
+        tools:context="com.cationvideocall.example.captionvideocall.Activity.MainActivity">
 
         <ImageView
-            android:id="@+id/imv_back"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/back" />
-
-        <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/person2"
             android:layout_width="64dp"
             android:layout_height="63dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="256dp"
             android:background="#F6EFEF"
+            app:layout_constraintBottom_toBottomOf="@+id/person1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/person1"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/personbtn" />
+
+        <TextView
+            android:id="@+id/tv_name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="김영웅"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/person3"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="@+id/person3"
+            app:layout_constraintTop_toBottomOf="@+id/person3" />
+
+        <TextView
+            android:id="@+id/tv_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="둘째딸"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/person2"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="@+id/person2"
+            app:layout_constraintTop_toBottomOf="@+id/person2" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="184dp"
+            android:text="최근 통화 상대"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="막내 아들"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/person1"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="@+id/person1"
+            app:layout_constraintTop_toBottomOf="@+id/person1" />
+
+        <ImageView
+            android:id="@+id/person1"
+            android:layout_width="64dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="24dp"
+            android:background="#F6EFEF"
+            app:layout_constraintEnd_toStartOf="@+id/person2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:srcCompat="@drawable/personbtn" />
+
+        <ImageView
+            android:id="@+id/person3"
+            android:layout_width="64dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="57dp"
+            android:layout_marginEnd="52dp"
+            app:layout_constraintBottom_toBottomOf="@+id/person2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/person2"
+            app:layout_constraintTop_toTopOf="@+id/person2"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/personbtn" />
+
+        <ImageView
+            android:id="@+id/imv_logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
+        <TextView
+            android:id="@+id/tvv_whocall"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:includeFontPadding="false"
+            android:text="Caption Video Call"
+            android:textColor="#14B8A6"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imv_logo" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="418dp"
+            android:layout_height="73dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/plusman" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.465"
+                app:srcCompat="@drawable/phonebook" />
+
+            <TextView
+                android:id="@+id/tv_plusphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="연락처 추가"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <TextView
+                android:id="@+id/tv_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="마이페이지"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView9"
+                app:layout_constraintStart_toStartOf="@+id/imageView9"
+                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+            <TextView
+                android:id="@+id/tv_phonebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="연락처"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/settingmypage" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="19dp"
+            android:layout_height="21dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:srcCompat="@drawable/heart" />
+
+        <ImageView
+            android:id="@+id/person5"
+            android:layout_width="64dp"
+            android:layout_height="63dp"
+            android:background="#F6EFEF"
+            app:layout_constraintBottom_toBottomOf="@+id/person4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/person4"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/personbtn" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="19dp"
             android:layout_height="21dp"
-            android:layout_marginEnd="36dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_2"
+            app:layout_constraintEnd_toStartOf="@+id/tv_2"
+            app:layout_constraintTop_toTopOf="@+id/tv_2"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/star" />
 
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:text="주요 연락처"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name2" />
+
         <ImageView
-            android:id="@+id/imv_logo"
-            android:layout_width="49dp"
-            android:layout_height="35dp"
+            android:id="@+id/person4"
+            android:layout_width="64dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="12dp"
+            android:background="#F6EFEF"
+            app:layout_constraintEnd_toStartOf="@+id/person5"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_2"
+            app:srcCompat="@drawable/personbtn" />
+
+        <TextView
+            android:id="@+id/tv_name4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/person4"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="@+id/person4"
+            app:layout_constraintTop_toBottomOf="@+id/person4"
+            tools:text="첫째딸" />
+
+        <TextView
+            android:id="@+id/tv_name6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/person6"
+            app:layout_constraintStart_toStartOf="@+id/person6"
+            app:layout_constraintTop_toBottomOf="@+id/person6"
+            tools:text="막내아들" />
+
+        <ImageView
+            android:id="@+id/person6"
+            android:layout_width="64dp"
+            android:layout_height="63dp"
+            android:background="#F6EFEF"
+            app:layout_constraintBottom_toBottomOf="@+id/person5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/person5"
+            app:layout_constraintTop_toTopOf="@+id/person5"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/personbtn" />
+
+        <TextView
+            android:id="@+id/tv_name5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/person5"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="@+id/person5"
+            app:layout_constraintTop_toBottomOf="@+id/person5"
+            tools:text="허윤미" />
+
+        <ImageView
+            android:id="@+id/imv_logout"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logout" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="128dp"
-            android:text="최근 통화 상대"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="로그아웃"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/imv_logout"
+            app:layout_constraintStart_toStartOf="@+id/imv_logout"
+            app:layout_constraintTop_toBottomOf="@+id/imv_logout" />
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView3"
-            app:layout_constraintStart_toStartOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            tools:text="첫째딸" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

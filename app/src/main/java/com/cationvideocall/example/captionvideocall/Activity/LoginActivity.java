@@ -1,8 +1,9 @@
-package com.cationvideocall.example.captionvideocall;
+package com.cationvideocall.example.captionvideocall.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.cationvideocall.example.captionvideocall.MySharedPreferences;
 import com.google.gson.JsonObject;
 import com.captionvideocall.example.captionvideocall.R;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
@@ -24,6 +25,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private RetrofitService retrofitService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +33,29 @@ public class LoginActivity extends AppCompatActivity {
 // 퍼미션 체크를 위한 루틴입니다.
         checkPermission();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        // SharedPreferences 안에 값이 저장되어 있지 않을 때 -> LoginActivity
+        if (MySharedPreferences.getUserId(this).isEmpty()
+                || MySharedPreferences.getUserPass(this).isEmpty()) {
+            Login();
+        }
+        // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity
+        else {
+            Toast.makeText(this, MySharedPreferences.getUserId(this) + "님 자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+        //회원가입버튼 클릭시
+        binding.btnResgist.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            startActivity(intent);
+        });
+    }
+    private void Login(){
         binding.btnLogin.setOnClickListener(view -> {
             retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
-
             Call<JsonObject> call = retrofitService.getLoginCheck(binding.etId.getText().toString(),
                     binding.etPw.getText().toString());
 
@@ -43,9 +65,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Log.d("연결 성공", response.message());
                         JsonObject jsonObject = response.body();
+                        MySharedPreferences.setUserId(LoginActivity.this, binding.etId.getText().toString());
+                        MySharedPreferences.setUserPass(LoginActivity.this, binding.etPw.getText().toString());
                         Toast.makeText(LoginActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, ProposeCallActivity.class);
-                        intent.putExtra("user_id",binding.etId.getText().toString());
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -62,14 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         });
-
-        //회원가입버튼 클릭시
-        binding.btnResgist.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-            startActivity(intent);
-        });
     }
-
     // 권한을 체크합니다.
     // 사용자에게 필수로 권한을 확인받아야 하는  요소는 CAMERA,RECORD_AUDIO,WRITE_EXTERNAL_STORAGE 입니다
     @SuppressLint("NewApi")
@@ -81,14 +97,17 @@ public class LoginActivity extends AppCompatActivity {
                 "android.permission.MODIFY_AUDIO_SETTINGS",
                 "android.permission.ACCESS_NETWORK_STATE",
                 "android.permission.CHANGE_WIFI_STATE",
+                "android.permission.CHANGE_NETWORK_STATE",
                 "android.permission.ACCESS_WIFI_STATE",
                 "android.permission.READ_PHONE_STATE",
                 "android.permission.BLUETOOTH",
                 "android.permission.BLUETOOTH_ADMIN",
                 "android.permission.WRITE_EXTERNAL_STORAGE"
+
         };
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions(MANDATORY_PERMISSIONS, 100);
         }
     }
+
 }

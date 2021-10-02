@@ -1,4 +1,4 @@
-package com.cationvideocall.example.captionvideocall;
+package com.cationvideocall.example.captionvideocall.Activity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,8 +49,8 @@ public class OnCallActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 //        String user_id = intent.getExtras().getString("user_id");
-//        String room_num = intent.getExtras().getString("room_num");
-       String user_id = "작은아들";String room_num="5020";
+        String room_num = intent.getExtras().getString("room_num");
+//       String user_id = "작은아들";String room_num="5020";
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -148,7 +148,7 @@ public class OnCallActivity extends AppCompatActivity {
 
         // 서버 접속 및 채널 생성이 완료된 이후 호출되는 콜백입니다.
         remonCall.onConnect(chid -> {
-            Snackbar.make(binding.rootLayout, "채널($id)에 연결되었습니다.", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(binding.rootLayout, "전화연결 되었습니다.", Snackbar.LENGTH_SHORT).show();
             updateView(false);
         });
 
@@ -165,8 +165,8 @@ public class OnCallActivity extends AppCompatActivity {
         remonCall.onClose(closeType -> {
             updateView(false);
 //            binding.btnConnect.setEnabled(true);
-            binding.imvClose.setEnabled(false);
-
+//            binding.imvClose.setEnabled(false);
+            Log.d("clossType 클로즈타입", closeType.toString());
             // 에러에 의한 종료인지 체크
             if (closeType == CloseType.UNKNOWN && latestError != null) {
                 Snackbar.make(
@@ -175,6 +175,14 @@ public class OnCallActivity extends AppCompatActivity {
                         Snackbar.LENGTH_SHORT
                 ).show();
             }
+            if (closeType ==CloseType.OTHER||closeType==closeType.OTHER_UNEXPECTED){
+                Snackbar.make(
+                        binding.rootLayout,
+                        "연결이 종료되었습니다.",
+                        Snackbar.LENGTH_SHORT
+                ).show();
+                finish();
+            }
         });
 
 
@@ -182,7 +190,7 @@ public class OnCallActivity extends AppCompatActivity {
         // 연결이 종료되는 경우 에러 전달 후 onClose가 호출 되므로,
         // 시나리오에 따른 ux 처리는 onClose에서 진행되어야 합니다.
         remonCall.onError(e -> {
-            Log.e("SimpleRemon", "error=" + e.getDescription());
+            Log.e("SimpleRemon 에러에러", "error=" + e.getDescription());
             latestError = e;
         });
         // 연결된 peer 간에 메시지를 전달하는 경우 호출되는 콜백입니다.
@@ -193,7 +201,9 @@ public class OnCallActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        remonCall.close();
+        if (remonCall != null) {
+            remonCall.close();
+        }
         super.onDestroy();
     }
 

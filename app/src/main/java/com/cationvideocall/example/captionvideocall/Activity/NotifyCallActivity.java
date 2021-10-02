@@ -1,4 +1,4 @@
-package com.cationvideocall.example.captionvideocall;
+package com.cationvideocall.example.captionvideocall.Activity;
 
 import com.google.gson.JsonObject;
 import android.content.Intent;
@@ -19,7 +19,7 @@ import retrofit2.Response;
 
 public class NotifyCallActivity extends AppCompatActivity {
     private ActivityNotifyCallBinding binding;
-    private RetrofitService retrofitService;
+    private RetrofitService retrofitService1,retrofitService2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +31,12 @@ public class NotifyCallActivity extends AppCompatActivity {
         String user_id = intent.getExtras().getString("user_id");
         String room_num = intent.getExtras().getString("room_num");
 
-        binding.tvWhoCall.setText(user_id);
+        binding.tvvWhocall.setText(user_id);
 
         binding.imvGetCall.setOnClickListener(view -> {
-            retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+            retrofitService1 = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
-            Call<JsonObject> call = retrofitService.getAccept(user_id);
-
+            Call<JsonObject> call = retrofitService1.getResponse(user_id,true);
             call.enqueue(new Callback<JsonObject>() {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -59,12 +58,28 @@ public class NotifyCallActivity extends AppCompatActivity {
                     Log.d("ssss", t.getMessage());
                 }
             });
-
-
         });
-
         binding.imvRejectCall.setOnClickListener(view -> {
-            finish();
+            retrofitService2 = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+
+            Call<JsonObject> call = retrofitService2.getResponse(user_id,false);
+
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if (response.isSuccessful()) {
+                        Log.d("연결 성공", response.message());
+                        finish();
+                    } else {
+                        Log.d("ssss", response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Log.d("ssss", t.getMessage());
+                }
+            });
         });
 
     }

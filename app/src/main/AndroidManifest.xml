@@ -17,6 +17,10 @@
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -26,34 +30,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.cationvideocall.example.captionvideocall.MainActivity"
+            android:name="com.cationvideocall.example.captionvideocall.Activity.MainActivity"
             android:exported="true" />
         <activity
-            android:name="com.cationvideocall.example.captionvideocall.ProposeCallActivity"
+            android:name="com.cationvideocall.example.captionvideocall.Activity.ProposeCallActivity"
             android:exported="true" />
         <activity
-            android:name="com.cationvideocall.example.captionvideocall.OnCallActivity"
+            android:name="com.cationvideocall.example.captionvideocall.Activity.OnCallActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.MAIN" />-->
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+<!--            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--        </intent-filter>-->
     </activity>
         <activity
-            android:name="com.cationvideocall.example.captionvideocall.NotifyCallActivity"
+            android:name="com.cationvideocall.example.captionvideocall.Activity.NotifyCallActivity"
             android:exported="true" />
         <activity
-            android:name="com.cationvideocall.example.captionvideocall.SignupActivity"
+            android:name="com.cationvideocall.example.captionvideocall.Activity.SignupActivity"
             android:exported="true" />
         <activity
-            android:name="com.cationvideocall.example.captionvideocall.LoginActivity"
+            android:name="com.cationvideocall.example.captionvideocall.Activity.LoginActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <service
