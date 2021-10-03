@@ -102,7 +102,8 @@ public class LoginActivity extends AppCompatActivity {
                 "android.permission.READ_PHONE_STATE",
                 "android.permission.BLUETOOTH",
                 "android.permission.BLUETOOTH_ADMIN",
-                "android.permission.WRITE_EXTERNAL_STORAGE"
+                "android.permission.WRITE_EXTERNAL_STORAGE",
+                "android.permission.READ_EXTERNAL_STORAGE"
 
         };
         if (Build.VERSION.SDK_INT >= 23) {

@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
         binding.person1.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, ProposeCallActivity.class);
             startActivity(intent);
-            finish();
+//            finish();
         });
         binding.imvLogout.setOnClickListener(view -> {
             // 로그아웃 진행
             MySharedPreferences.clearUser(getApplicationContext());
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-            finish();
+//            finish();
         });
 
 
