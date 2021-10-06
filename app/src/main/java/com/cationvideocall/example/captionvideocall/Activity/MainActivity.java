@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 //            finish();
         });
+        binding.person2.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, TestActivity.class);
+            startActivity(intent);
+        });
 
 
     }

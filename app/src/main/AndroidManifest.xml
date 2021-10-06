@@ -31,15 +31,19 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name="com.cationvideocall.example.captionvideocall.Activity.TestActivity"
+            android:exported="true" />
         <activity
             android:name="com.cationvideocall.example.captionvideocall.Activity.SplashActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.cationvideocall.example.captionvideocall.Activity.MainActivity"
@@ -66,8 +70,7 @@
             android:exported="true" />
         <activity
             android:name="com.cationvideocall.example.captionvideocall.Activity.LoginActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
 
         <service
             android:name="com.cationvideocall.example.captionvideocall.FirebaseMessagingIDService"

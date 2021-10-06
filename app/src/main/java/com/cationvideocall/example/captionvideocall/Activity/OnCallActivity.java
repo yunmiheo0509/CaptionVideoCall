@@ -4,6 +4,8 @@ package com.cationvideocall.example.captionvideocall.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,14 +18,18 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
 import android.widget.ImageView;
 
 import com.captionvideocall.example.captionvideocall.databinding.ActivityOnCallBinding;
+import com.cationvideocall.example.captionvideocall.recyclerview.SimpleTextAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.captionvideocall.example.captionvideocall.R;
 import com.remotemonster.sdk.RemonCall;
 import com.remotemonster.sdk.RemonException;
 import com.remotemonster.sdk.data.CloseType;
+
+import java.util.ArrayList;
 
 public class OnCallActivity extends AppCompatActivity {
     private int REMON_PERMISSION_REQUEST = 0x0101;
@@ -35,17 +41,35 @@ public class OnCallActivity extends AppCompatActivity {
     private ConstraintSet constraintSet = null;
     private ConstraintSet defaultConstraintSet = null;
 
+    ArrayList<String> list;
+    SimpleTextAdapter adapter;
+    RecyclerView recyclerView;
     //기타
     private InputMethodManager inputMethodManager;
     private RemonException latestError = null;
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_call);
+        // 리사이클러뷰에 표시할 데이터 리스트 생성.
+        list = new ArrayList<>();
+//        for (int i=0; i<10; i++) {
+//            Log.d("어래이 리스추가","추가추가");
+//            list.add(String.format("Test %d", i)) ;
+//        }
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+         recyclerView = findViewById(R.id.recyclerView) ;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
+        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+        adapter = new SimpleTextAdapter(list) ;
+        recyclerView.setAdapter(adapter) ;
+
+
 
         // 영웅 추가 - 권한 설정
-       checkPermission();
+        checkPermission();
 
         Intent intent = getIntent();
 //        String user_id = intent.getExtras().getString("user_id");
@@ -108,16 +132,14 @@ public class OnCallActivity extends AppCompatActivity {
 
         //원래 여기가 메시지 보내는 부분이다 참고하기참고하기!!!!!!!이거 xml에서는 지워버림
         // 메시지 버튼
-//        binding.btnSend.setOnClickListener(view -> {
-//            String msg = binding.etMessage.getText().toString();
-//            binding.etMessage.setText("");
-//            inputMethodManager.hideSoftInputFromWindow(binding.etMessage.getWindowToken(), 0);
-//            binding.etMessage.clearFocus();
-//
-//            if (remonCall != null && !msg.isEmpty()) {
-//                remonCall.sendMessage(msg);
-//            }
-//        });
+        binding.layoutLocal.setOnClickListener(view -> {
+            String msg = "안녕하세요";
+            //테스트해봄
+            addCaption("테스트 데이터");
+            if (remonCall != null && !msg.isEmpty()) {
+                remonCall.sendMessage(msg);
+            }
+        });
     }
 
     // RemonCall 초기화
@@ -150,11 +172,24 @@ public class OnCallActivity extends AppCompatActivity {
         remonCall.onConnect(chid -> {
             Snackbar.make(binding.rootLayout, "전화연결 되었습니다.", Snackbar.LENGTH_SHORT).show();
             updateView(false);
+            adapter.notifyDataSetChanged();
+//            list = new ArrayList<>();
+//            for (int i=0; i<10; i++) {
+//                Log.d("데이터 리스추가","추가추가");
+//                list.add(String.format("Test %d", i)) ;
+//            }
+//
+//            adapter = new SimpleTextAdapter(list) ;
+//            recyclerView.setAdapter(adapter) ;
+//            adapter.notifyDataSetChanged();
+//
+//            Log.d("데이터 수 ","${}"+adapter.getItemCount());
         });
 
         // 다른 사용자와 Peer 연결이 완료된 이후 호출되는 콜백입니다.
         remonCall.onComplete(() -> {
             updateView(true);
+            adapter.notifyDataSetChanged();
         });
 
         // 상대방이 연결을 끊거나, close() 호출후 종료가 완료되면 호출됩니다.
@@ -175,7 +210,7 @@ public class OnCallActivity extends AppCompatActivity {
                         Snackbar.LENGTH_SHORT
                 ).show();
             }
-            if (closeType ==CloseType.OTHER||closeType==closeType.OTHER_UNEXPECTED){
+            if (closeType == CloseType.OTHER || closeType == closeType.OTHER_UNEXPECTED) {
                 Snackbar.make(
                         binding.rootLayout,
                         "연결이 종료되었습니다.",
@@ -196,7 +231,11 @@ public class OnCallActivity extends AppCompatActivity {
         // 연결된 peer 간에 메시지를 전달하는 경우 호출되는 콜백입니다.
         remonCall.onMessage(msg -> {
             Snackbar.make(binding.rootLayout, msg, Snackbar.LENGTH_SHORT).show();
+            Log.d("여기는 온메시지", msg);
+//            adapter.setArrayData(msg);
+//            recyclerView.setAdapter(adapter);
         });
+
     }
 
     @Override
@@ -274,6 +313,13 @@ public class OnCallActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions(MANDATORY_PERMISSIONS, 100);
         }
+    }
+    public void addCaption(String str){
+        Log.d("데이터 리스추가","추가추가");
+        list.add(str) ;
+        Log.d("데이터 수 ","${}"+adapter.getItemCount());
+        adapter.notifyDataSetChanged();
+//        Log.d("데이터 수 ","${}"+adapter.getItemCount());
     }
 }
 
