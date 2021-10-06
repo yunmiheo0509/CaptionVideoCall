@@ -65,7 +65,17 @@ public class OnCallActivity extends AppCompatActivity {
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         adapter = new SimpleTextAdapter(list) ;
         recyclerView.setAdapter(adapter) ;
+//테스트해봄
+        addCaption("테스트 데이터");
+        runOnUiThread(new Runnable() {
 
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+                // Stuff that updates the UI
+
+            }
+        });
 
 
         // 영웅 추가 - 권한 설정
@@ -98,7 +108,6 @@ public class OnCallActivity extends AppCompatActivity {
 
 //        binding.btnConnect.setEnabled(false);
         binding.imvClose.setEnabled(true);
-
         // 버튼 이벤트 연결
         // 연결, 종료 버튼 클릭이벤트를 정의합니다.
         // 연결 버튼 클릭시 RemonCall 을 초기화하고, connect(채널명) 메쏘드를 호출합니다.
@@ -134,8 +143,7 @@ public class OnCallActivity extends AppCompatActivity {
         // 메시지 버튼
         binding.layoutLocal.setOnClickListener(view -> {
             String msg = "안녕하세요";
-            //테스트해봄
-            addCaption("테스트 데이터");
+
             if (remonCall != null && !msg.isEmpty()) {
                 remonCall.sendMessage(msg);
             }
@@ -172,7 +180,6 @@ public class OnCallActivity extends AppCompatActivity {
         remonCall.onConnect(chid -> {
             Snackbar.make(binding.rootLayout, "전화연결 되었습니다.", Snackbar.LENGTH_SHORT).show();
             updateView(false);
-            adapter.notifyDataSetChanged();
 //            list = new ArrayList<>();
 //            for (int i=0; i<10; i++) {
 //                Log.d("데이터 리스추가","추가추가");
@@ -189,7 +196,6 @@ public class OnCallActivity extends AppCompatActivity {
         // 다른 사용자와 Peer 연결이 완료된 이후 호출되는 콜백입니다.
         remonCall.onComplete(() -> {
             updateView(true);
-            adapter.notifyDataSetChanged();
         });
 
         // 상대방이 연결을 끊거나, close() 호출후 종료가 완료되면 호출됩니다.
@@ -318,7 +324,15 @@ public class OnCallActivity extends AppCompatActivity {
         Log.d("데이터 리스추가","추가추가");
         list.add(str) ;
         Log.d("데이터 수 ","${}"+adapter.getItemCount());
-        adapter.notifyDataSetChanged();
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+                // Stuff that updates the UI
+
+            }
+        });
 //        Log.d("데이터 수 ","${}"+adapter.getItemCount());
     }
 }
