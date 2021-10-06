@@ -47,37 +47,14 @@ public class OnCallActivity extends AppCompatActivity {
     //기타
     private InputMethodManager inputMethodManager;
     private RemonException latestError = null;
-
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // bind activity layout
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_call);
-        // 리사이클러뷰에 표시할 데이터 리스트 생성.
-        list = new ArrayList<>();
-//        for (int i=0; i<10; i++) {
-//            Log.d("어래이 리스추가","추가추가");
-//            list.add(String.format("Test %d", i)) ;
-//        }
-        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-         recyclerView = findViewById(R.id.recyclerView) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
-        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        adapter = new SimpleTextAdapter(list) ;
-        recyclerView.setAdapter(adapter) ;
-//테스트해봄
-        addCaption("테스트 데이터");
-        runOnUiThread(new Runnable() {
 
-            @Override
-            public void run() {
-                adapter.notifyDataSetChanged();
-                // Stuff that updates the UI
-
-            }
-        });
-
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_on_call);
         // 영웅 추가 - 권한 설정
         checkPermission();
 
@@ -88,8 +65,7 @@ public class OnCallActivity extends AppCompatActivity {
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        // bind activity layout
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_on_call);
+
 
         // 레이아웃 조절을 위해 activity_main.xml의 constraint 정보를 저장해 둡니다.
         constraintSet = new ConstraintSet();
@@ -143,11 +119,35 @@ public class OnCallActivity extends AppCompatActivity {
         // 메시지 버튼
         binding.layoutLocal.setOnClickListener(view -> {
             String msg = "안녕하세요";
-
+            addCaption("테스트 데이터2");
             if (remonCall != null && !msg.isEmpty()) {
                 remonCall.sendMessage(msg);
             }
         });
+// 리사이클러뷰에 표시할 데이터 리스트 생성.
+        list = new ArrayList<>();
+//        for (int i=0; i<10; i++) {
+//            Log.d("어래이 리스추가","추가추가");
+//            list.add(String.format("Test %d", i)) ;
+//        }
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+//         recyclerView = findViewById(R.id.recyclerView) ;
+        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
+        adapter = new SimpleTextAdapter(list) ;
+        binding.recyclerView.setAdapter(adapter) ;
+//테스트해봄
+//        addCaption("테스트 데이터");
+//        runOnUiThread(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                adapter.notifyDataSetChanged();
+//                // Stuff that updates the UI
+//
+//            }
+//        });
     }
 
     // RemonCall 초기화
@@ -321,13 +321,13 @@ public class OnCallActivity extends AppCompatActivity {
         }
     }
     public void addCaption(String str){
-        Log.d("데이터 리스추가","추가추가");
-        list.add(str) ;
-        Log.d("데이터 수 ","${}"+adapter.getItemCount());
+
         runOnUiThread(new Runnable() {
 
             @Override
-            public void run() {
+            public void run() {Log.d("데이터 리스추가","추가추가");
+                list.add(str) ;
+                Log.d("데이터 수 ","${}"+adapter.getItemCount());
                 adapter.notifyDataSetChanged();
                 // Stuff that updates the UI
 
