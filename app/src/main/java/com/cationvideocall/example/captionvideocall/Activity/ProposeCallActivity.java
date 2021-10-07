@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.captionvideocall.example.captionvideocall.R;
+
 import com.captionvideocall.example.captionvideocall.databinding.ActivityProposeCallBinding;
 import com.cationvideocall.example.captionvideocall.MySharedPreferences;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
@@ -35,7 +36,7 @@ public class ProposeCallActivity extends AppCompatActivity {
             retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
             //테스트용으로 kk직접 할당
-            String test_counter_id="mm";
+            String test_counter_id="sa";
 
             Call<JsonObject> call = retrofitService.getPropose(user_id,test_counter_id);
 
