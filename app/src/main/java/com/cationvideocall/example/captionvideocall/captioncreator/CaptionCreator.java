@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
 
+import com.google.android.gms.common.util.ArrayUtils;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -39,15 +40,15 @@ public class CaptionCreator {
     public void recordSpeech() throws RuntimeException {
         int lenSpeech = 0;
         isRecording = true;
-        speechData = new byte[24000 * 45 * 2];
+        speechData = new byte[16000 * 60 * 2];
         try {
             int bufferSize = AudioRecord.getMinBufferSize(
-                    24000, // sampling frequency
+                    16000, // sampling frequency
                     AudioFormat.CHANNEL_IN_MONO,
                     AudioFormat.ENCODING_PCM_16BIT);
             @SuppressLint("MissingPermission") AudioRecord audio = new AudioRecord(
                     MediaRecorder.AudioSource.VOICE_RECOGNITION,
-                    24000, // sampling frequency
+                    16000, // sampling frequency
                     AudioFormat.CHANNEL_IN_MONO,
                     AudioFormat.ENCODING_PCM_16BIT,
                     bufferSize);
@@ -73,7 +74,7 @@ public class CaptionCreator {
                             speechData[lenSpeech * 2 + 1] = (byte) ((inBuffer[i] & 0xFF00) >> 8);
                             lenSpeech++;
                         } catch (ArrayIndexOutOfBoundsException e){
-                            speechData = new byte[24000 * 45 * 2];
+                            speechData = new byte[16000 * 60 * 2];
                         }
 
                     }
@@ -130,7 +131,7 @@ public class CaptionCreator {
                             String response = sendAndGetData(makeRequest(Arrays.copyOfRange(speechData, 2 * startingIndex, 2 * endIndex + 1), endIndex-startingIndex));
                             SendMessage(response);
 
-                            speechData = new byte[24000 * 45 * 2];
+                            speechData = new byte[16000 * 60 * 2];
                             lenSpeech = 0;
                             endIndex = 0;
                             startingIndex = 0;
