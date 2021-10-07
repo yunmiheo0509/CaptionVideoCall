@@ -1,9 +1,13 @@
 package com.cationvideocall.example.captionvideocall.Activity;
 
 import com.google.gson.JsonObject;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -31,8 +35,13 @@ public class NotifyCallActivity extends AppCompatActivity {
         String counter_id = intent.getExtras().getString("user_id");
         String room_num = intent.getExtras().getString("room_num");
 
-        binding.tvvWhocall.setText(counter_id);
+        // 애니매이션
+        @SuppressLint("ResourceType") Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.ani_calling);
+        binding.imvGetCall.startAnimation(animation);
+        binding.imvRejectCall.startAnimation(animation);
 
+
+        binding.tvvWhocall.setText(counter_id);
         binding.imvGetCall.setOnClickListener(view -> {
             retrofitService1 = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
