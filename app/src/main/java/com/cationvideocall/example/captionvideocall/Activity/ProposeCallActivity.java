@@ -36,7 +36,7 @@ public class ProposeCallActivity extends AppCompatActivity {
             retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
             //테스트용으로 kk직접 할당
-            String counter_id="sa";
+            String counter_id="asd";
 
             Call<JsonObject> call = retrofitService.getPropose(user_id, counter_id);
 
