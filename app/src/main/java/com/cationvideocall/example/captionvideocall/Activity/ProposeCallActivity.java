@@ -36,9 +36,9 @@ public class ProposeCallActivity extends AppCompatActivity {
             retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
             //테스트용으로 kk직접 할당
-            String test_counter_id="sa";
+            String counter_id="sa";
 
-            Call<JsonObject> call = retrofitService.getPropose(user_id,test_counter_id);
+            Call<JsonObject> call = retrofitService.getPropose(user_id, counter_id);
 
             call.enqueue(new Callback<JsonObject>() {
                 @Override
@@ -54,7 +54,7 @@ public class ProposeCallActivity extends AppCompatActivity {
                             String room_num = jsonObject.get("room_num").toString();
                             Log.d("room_num: ", room_num);
                             Intent intent1 = new Intent(ProposeCallActivity.this, OnCallActivity.class);
-                            intent1.putExtra("user_id", user_id);
+                            intent1.putExtra("counter_id", counter_id);
                             intent1.putExtra("room_num", room_num);
                             startActivity(intent1);
                         }else if(code.equals("201")){

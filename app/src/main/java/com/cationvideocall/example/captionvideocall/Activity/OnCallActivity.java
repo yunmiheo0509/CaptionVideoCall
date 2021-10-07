@@ -66,6 +66,7 @@ public class OnCallActivity extends AppCompatActivity {
         // get information
         Intent intent = getIntent();
         String room_num = intent.getExtras().getString("room_num");
+        String counter_id = intent.getExtras().getString("counter_id");
 
 
         // settings
@@ -201,6 +202,10 @@ public class OnCallActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    public String getNameById(String id){
+        return null;
     }
 }
 

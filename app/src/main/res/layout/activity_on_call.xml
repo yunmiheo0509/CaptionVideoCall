@@ -35,6 +35,15 @@
 
 
             <!-- Local -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="178dp"
+                android:background="@drawable/gradatien_recyclerview"
+                app:layout_constraintBottom_toTopOf="@+id/imv_close"
+                app:layout_constraintEnd_toStartOf="@+id/layoutLocal"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <RelativeLayout
                 android:id="@+id/layoutLocal"
                 android:layout_width="122dp"
@@ -60,15 +69,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/close" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="275dp"
-                android:layout_height="178dp"
-                android:background="#9C27B0"
-                app:layout_constraintBottom_toTopOf="@+id/imv_close"
-                app:layout_constraintEnd_toStartOf="@+id/layoutLocal"
-                app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
