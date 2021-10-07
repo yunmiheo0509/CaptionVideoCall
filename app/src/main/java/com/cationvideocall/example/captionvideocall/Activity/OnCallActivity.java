@@ -199,6 +199,7 @@ public class OnCallActivity extends AppCompatActivity {
             @Override
             public void run() {
                 list.add(str) ;
+                binding.recyclerView.smoothScrollToPosition(binding.recyclerView.getAdapter().getItemCount() - 1);
                 adapter.notifyDataSetChanged();
             }
         });

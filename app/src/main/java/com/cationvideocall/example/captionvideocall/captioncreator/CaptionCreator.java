@@ -39,15 +39,15 @@ public class CaptionCreator {
     public void recordSpeech() throws RuntimeException {
         int lenSpeech = 0;
         isRecording = true;
-        speechData = new byte[16000 * 60 * 2];
+        speechData = new byte[24000 * 45 * 2];
         try {
             int bufferSize = AudioRecord.getMinBufferSize(
-                    16000, // sampling frequency
+                    24000, // sampling frequency
                     AudioFormat.CHANNEL_IN_MONO,
                     AudioFormat.ENCODING_PCM_16BIT);
             @SuppressLint("MissingPermission") AudioRecord audio = new AudioRecord(
                     MediaRecorder.AudioSource.VOICE_RECOGNITION,
-                    16000, // sampling frequency
+                    24000, // sampling frequency
                     AudioFormat.CHANNEL_IN_MONO,
                     AudioFormat.ENCODING_PCM_16BIT,
                     bufferSize);
@@ -68,9 +68,14 @@ public class CaptionCreator {
                     int ret = audio.read(inBuffer, 0, bufferSize);
 
                     for (int i = 0; i < ret; i++) {
-                        speechData[lenSpeech * 2] = (byte) (inBuffer[i] & 0x00FF);
-                        speechData[lenSpeech * 2 + 1] = (byte) ((inBuffer[i] & 0xFF00) >> 8);
-                        lenSpeech++;
+                        try {
+                            speechData[lenSpeech * 2] = (byte) (inBuffer[i] & 0x00FF);
+                            speechData[lenSpeech * 2 + 1] = (byte) ((inBuffer[i] & 0xFF00) >> 8);
+                            lenSpeech++;
+                        } catch (ArrayIndexOutOfBoundsException e){
+                            speechData = new byte[24000 * 45 * 2];
+                        }
+
                     }
 
                     total = 0;
@@ -98,7 +103,7 @@ public class CaptionCreator {
                             System.out.println("level 값이 처음으로 1000 값을 넘은시점으로부터 15 만큼 이전부터 플레이 시점 설정");
                             // level 값이 처음으로 1000 값을 넘은시점으로부터 15 만큼 이전부터 플레이 시점 설정
                             // 시작하는 목소리가 끊겨 들리지 않게 하기 위하여 -15
-                            startingIndex -= 30;
+                            startingIndex -= 45;
                             if (startingIndex < 0)
                                 startingIndex = 0;
                         }
@@ -117,7 +122,7 @@ public class CaptionCreator {
                             cnt = 0;
                         }
                         // endIndex 를 저장하고 레벨체킹을 끝냄
-                        if (cnt > 5) {
+                        if (cnt > 10) {
                             System.out.println("endIndex 를 저장하고 레벨체킹을 끝냄");
 //                            System.out.println("startingIndex" + startingIndex);
                             endIndex = lenSpeech;
@@ -125,7 +130,7 @@ public class CaptionCreator {
                             String response = sendAndGetData(makeRequest(Arrays.copyOfRange(speechData, 2 * startingIndex, 2 * endIndex + 1), endIndex-startingIndex));
                             SendMessage(response);
 
-                            speechData = new byte[16000 * 60 * 2];
+                            speechData = new byte[24000 * 45 * 2];
                             lenSpeech = 0;
                             endIndex = 0;
                             startingIndex = 0;

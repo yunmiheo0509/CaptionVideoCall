@@ -14,10 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context="com.cationvideocall.example.captionvideocall.Activity.OnCallActivity">
-            <!-- Remote -->
-
-
-            <!-- Local -->
 
             <RelativeLayout
                 android:id="@+id/layoutRemote"
@@ -38,8 +34,8 @@
 
             <RelativeLayout
                 android:id="@+id/layoutLocal"
-                android:layout_width="92dp"
-                android:layout_height="121dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:layout_margin="10dp"
                 android:layout_marginEnd="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerView"
