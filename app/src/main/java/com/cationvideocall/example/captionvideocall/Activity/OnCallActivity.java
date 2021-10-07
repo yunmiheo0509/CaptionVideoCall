@@ -79,8 +79,8 @@ public class OnCallActivity extends AppCompatActivity {
         binding.imvClose.setOnClickListener(view -> {
             remonCall.close();
             remonCall = null;
-            finish();
         });
+
         list = new ArrayList<>();
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
         adapter = new SimpleTextAdapter(list) ;
@@ -151,6 +151,7 @@ public class OnCallActivity extends AppCompatActivity {
             if (closeType == CloseType.OTHER || closeType == closeType.OTHER_UNEXPECTED) {
 
             }
+            finish();
         });
 
 
