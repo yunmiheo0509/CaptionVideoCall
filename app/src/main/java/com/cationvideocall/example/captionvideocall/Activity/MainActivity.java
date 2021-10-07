@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 list.add(str) ;
-                binding.recyclerviewPerson.smoothScrollToPosition(binding.recyclerviewPerson.getAdapter().getItemCount() - 1);
                 adapter.notifyDataSetChanged();
             }
         });
