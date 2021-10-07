@@ -78,7 +78,6 @@ public class OnCallActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_on_call);
         binding.imvClose.setOnClickListener(view -> {
             remonCall.close();
-            remonCall = null;
         });
 
         list = new ArrayList<>();
