@@ -8,38 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F6F8F4"
-        tools:context="com.cationvideocall.example.captionvideocall.Activity.NotifyCallActivity">
-
-        <TextView
-            android:id="@+id/tv_callid2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_whocall"
-            tools:text="Herok97" />
+        tools:context="com.cationvideocall.example.captionvideocall.Activity.WaitActivity">
 
         <ImageView
             android:id="@+id/imv_rejectCall"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginStart="50dp"
             android:layout_marginBottom="120dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="@+id/tv_whocall"
+            app:layout_constraintStart_toStartOf="@+id/tv_whocall"
             app:srcCompat="@drawable/redcall"
             tools:srcCompat="@drawable/redcall" />
-
-        <ImageView
-            android:id="@+id/imv_getCall"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imv_rejectCall"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            app:srcCompat="@drawable/call"
-            tools:srcCompat="@drawable/call" />
 
         <TextView
             android:id="@+id/tv_whocall"
@@ -65,16 +45,35 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo" />
 
+        <TextView
+            android:id="@+id/tv_callid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_whocall"
+            tools:text="Herok97" />
+
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/imageView10"
             android:layout_width="186dp"
             android:layout_height="30dp"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_callid2"
-            app:srcCompat="@drawable/callmsg" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_callid"
+            app:srcCompat="@drawable/connectcall" />
 
+        <TextView
+            android:id="@+id/tv_waittime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView10"
+            tools:text="00:00" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

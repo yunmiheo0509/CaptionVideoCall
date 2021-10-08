@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo" />
         <TextView
-            android:id="@+id/tvv_whocall"
+            android:id="@+id/tv_whocall"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"

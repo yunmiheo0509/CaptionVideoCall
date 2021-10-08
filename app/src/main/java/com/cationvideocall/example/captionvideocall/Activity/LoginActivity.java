@@ -53,39 +53,50 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-    private void Login(){
+
+    private void Login() {
         binding.btnLogin.setOnClickListener(view -> {
-            retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
-            Call<JsonObject> call = retrofitService.getLoginCheck(binding.etId.getText().toString(),
-                    binding.etPw.getText().toString());
+            if (!binding.etId.getText().toString().equals("") && !binding.etPw.getText().toString().equals("")) {
+                retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+                Call<JsonObject> call = retrofitService.getLoginCheck(binding.etId.getText().toString(),
+                        binding.etPw.getText().toString());
 
-            call.enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    if (response.isSuccessful()) {
-                        Log.d("연결 성공", response.message());
-                        JsonObject jsonObject = response.body();
-                        MySharedPreferences.setUserId(LoginActivity.this, binding.etId.getText().toString());
-                        MySharedPreferences.setUserPass(LoginActivity.this, binding.etPw.getText().toString());
-                        Toast.makeText(LoginActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 확인해주세요"
-                                , Toast.LENGTH_SHORT).show();
-
-                        Log.d("오류발생", response.message());
+                call.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        if (response.isSuccessful()) {
+                            Log.d("연결 성공", response.message());
+                            JsonObject jsonObject = response.body();
+                            String code = jsonObject.get("code").toString();
+                            if (code.equals("200")) {
+                                MySharedPreferences.setUserId(LoginActivity.this, binding.etId.getText().toString());
+                                MySharedPreferences.setUserPass(LoginActivity.this, binding.etPw.getText().toString());
+                                Toast.makeText(LoginActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                // 204
+                                Toast.makeText(LoginActivity.this, "check id and password, It's wrong", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(LoginActivity.this, "check the internet"
+                                    , Toast.LENGTH_SHORT).show();
+                            Log.d("오류발생", response.message());
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    Log.d("통신실패", t.getMessage());
-                }
-            });
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        Log.d("통신실패", t.getMessage());
+                    }
+                });
+            } else {
+                Toast.makeText(LoginActivity.this, "아이디 또는 패스워드를 입력해주세요", Toast.LENGTH_SHORT).show();
+            }
         });
     }
+
     // 권한을 체크합니다.
     // 사용자에게 필수로 권한을 확인받아야 하는  요소는 CAMERA,RECORD_AUDIO,WRITE_EXTERNAL_STORAGE 입니다
     @SuppressLint("NewApi")
@@ -104,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                 "android.permission.BLUETOOTH_ADMIN",
                 "android.permission.WRITE_EXTERNAL_STORAGE",
                 "android.permission.READ_EXTERNAL_STORAGE"
+                , "android.permission.VIBRATE"
 
         };
         if (Build.VERSION.SDK_INT >= 23) {

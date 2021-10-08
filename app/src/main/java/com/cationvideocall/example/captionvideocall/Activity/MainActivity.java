@@ -7,19 +7,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.captionvideocall.example.captionvideocall.R;
 import com.captionvideocall.example.captionvideocall.databinding.ActivityMainBinding;
 import com.cationvideocall.example.captionvideocall.MySharedPreferences;
+import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
+import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitService;
 import com.cationvideocall.example.captionvideocall.recyclerview.SimpleTextAdapter;
 import com.cationvideocall.example.captionvideocall.recyclerview.bookmarkAdapter;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     ArrayList<String> list;
     bookmarkAdapter adapter;
+    RetrofitService retrofitService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,19 +59,28 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 //            finish();
         });
-        binding.person2.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, TestActivity.class);
-            startActivity(intent);
+//        binding.person2.setOnClickListener(view -> {
+//            Intent intent = new Intent(MainActivity.this, TestActivity.class);
+//            startActivity(intent);
+//        });
+
+        // 아이디로 전화걸기
+        binding.btnCon.setOnClickListener(view -> {
+            if (binding.edtId.getText().toString() != null) {
+                Intent call = new Intent(MainActivity.this, WaitActivity.class);
+            call.putExtra("counter_id", binding.edtId.getText().toString());
+                startActivity(call);
+            }else{
+                Toast.makeText(MainActivity.this, "아이디를 입력해주세요", Toast.LENGTH_SHORT).show();
+            }
+
         });
-
-
     }
     public void addCaption(String str){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 list.add(str) ;
-                binding.recyclerviewPerson.smoothScrollToPosition(binding.recyclerviewPerson.getAdapter().getItemCount() - 1);
                 adapter.notifyDataSetChanged();
             }
         });

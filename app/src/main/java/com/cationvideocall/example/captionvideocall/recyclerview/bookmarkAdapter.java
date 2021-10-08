@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +25,7 @@ public class bookmarkAdapter extends RecyclerView.Adapter<bookmarkAdapter.ViewHo
             super(itemView);
 
             // 뷰 객체에 대한 참조. (hold strong reference)
-            tv_bookmarkname = itemView.findViewById(R.id.tv_bookmarkname);
+            tv_bookmarkname = itemView.findViewById(R.id.et_callbookName);
 //            imv_person = itemView.findViewById(R.id.imv_bookmarkperson);
         }
     }

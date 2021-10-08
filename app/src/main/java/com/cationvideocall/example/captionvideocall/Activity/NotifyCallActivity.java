@@ -4,7 +4,11 @@ import com.google.gson.JsonObject;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -24,7 +28,7 @@ import retrofit2.Response;
 public class NotifyCallActivity extends AppCompatActivity {
     private ActivityNotifyCallBinding binding;
     private RetrofitService retrofitService1,retrofitService2;
-
+    Ringtone rt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +44,18 @@ public class NotifyCallActivity extends AppCompatActivity {
         binding.imvGetCall.startAnimation(animation);
         binding.imvRejectCall.startAnimation(animation);
 
+        //진동 및 소리
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        final Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        vibrator.vibrate(new long[]{500,1000,500,1000},0);
+        rt = RingtoneManager.getRingtone(getApplicationContext(),notification);
+        rt.play();
 
-        binding.tvvWhocall.setText(counter_id);
+
+        binding.tvWhocall.setText(counter_id);
         binding.imvGetCall.setOnClickListener(view -> {
+            rt.stop();
+            vibrator.vibrate(500);
             retrofitService1 = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
             Call<JsonObject> call = retrofitService1.getResponse(counter_id,true);
@@ -69,6 +82,7 @@ public class NotifyCallActivity extends AppCompatActivity {
             });
         });
         binding.imvRejectCall.setOnClickListener(view -> {
+            rt.stop();
             retrofitService2 = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
             Call<JsonObject> call = retrofitService2.getResponse(counter_id,false);
