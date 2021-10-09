@@ -68,7 +68,7 @@ public class NotifyCallActivity extends AppCompatActivity {
         binding.tvWhocall.setText(counter_id);
         binding.imvGetCall.setOnClickListener(view -> {
             rt.stop();
-            vibrator.vibrate(500);
+            vibrator.cancel();
             retrofitService1 = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
             Call<JsonObject> call = retrofitService1.getResponse(counter_id,true);
@@ -96,6 +96,7 @@ public class NotifyCallActivity extends AppCompatActivity {
         });
         binding.imvRejectCall.setOnClickListener(view -> {
             rt.stop();
+            vibrator.cancel();
             retrofitService2 = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
             Call<JsonObject> call = retrofitService2.getResponse(counter_id,false);
