@@ -198,15 +198,27 @@ public class OnCallActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (!list.isEmpty() && (list.get(list.size()-1) + str).length() > 10) {
-                    list.set(list.size()-1, list.get(list.size()-1) + " " + str);
-                } else {
-                    list.add(str) ;
+                if (!is_English(str)){
+                    if (!list.isEmpty() && (list.get(list.size()-1) + str).length() < 10) {
+                        list.set(list.size()-1, list.get(list.size()-1) + " " + str);
+                    } else {
+                        list.add(str) ;
+                    }
+                    binding.recyclerView.smoothScrollToPosition(binding.recyclerView.getAdapter().getItemCount() - 1);
+                    adapter.notifyDataSetChanged();
                 }
-                binding.recyclerView.smoothScrollToPosition(binding.recyclerView.getAdapter().getItemCount() - 1);
-                adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    public boolean is_English(String str){
+        for (int i=0; i < str.length(); i++){
+            int index = str.charAt(i);
+            if (index >= 65 && index <= 122){
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getNameById(String id){

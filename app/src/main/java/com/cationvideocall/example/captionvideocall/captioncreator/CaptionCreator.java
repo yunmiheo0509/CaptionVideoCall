@@ -54,8 +54,8 @@ public class CaptionCreator {
                     AudioFormat.ENCODING_PCM_16BIT,
                     bufferSize);
             
-            // 노이즈 제거 모듈
-            NoiseSuppressor.create(audio.getAudioSessionId());
+//            // 노이즈 제거 모듈
+//            NoiseSuppressor.create(audio.getAudioSessionId());
 
             if (audio.getState() != AudioRecord.STATE_INITIALIZED) {
                 throw new RuntimeException("ERROR: Failed to initialize audio device. Allow app to access microphone");
