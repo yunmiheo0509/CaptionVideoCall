@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class NewCounterActivity extends AppCompatActivity {
     ActivityNewCounterBinding binding;
-    boolean star;
+
     RetrofitService retrofitService;
 
     @Override
@@ -29,19 +29,11 @@ public class NewCounterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_counter);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_counter);
-        star = false;
+
         binding.btnCancel.setOnClickListener(view -> {
             finish();
         });
-        binding.imvStar.setOnClickListener(view -> {
-            if(!star){
-                binding.imvStar.setImageResource(R.drawable.fullstar);
-                star=true;
-            }else{
-                binding.imvStar.setImageResource(R.drawable.star2);
-                star =false;
-            }
-        });
+
         binding.btnSave.setOnClickListener(view -> {
             String counter_id = binding.etCounterid.getText().toString();
             String name = binding.etCallbookName.getText().toString();
@@ -49,7 +41,7 @@ public class NewCounterActivity extends AppCompatActivity {
 
             if(!counter_id.equals("")&&!name.equals("")){
                 retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
-                Call<JsonObject> call = retrofitService.addCallBook(user_id,counter_id, name,star);
+                Call<JsonObject> call = retrofitService.addCallBook(user_id,counter_id, name);
                 call.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

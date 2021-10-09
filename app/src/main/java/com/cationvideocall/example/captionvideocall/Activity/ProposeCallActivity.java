@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.captionvideocall.example.captionvideocall.R;
@@ -22,13 +23,15 @@ import retrofit2.Response;
 
 public class ProposeCallActivity extends AppCompatActivity {
     private ActivityProposeCallBinding binding;
-
+    boolean edit;
+    boolean bookmark;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_propose_call);
         // bind activity layout
         binding = DataBindingUtil.setContentView(this, R.layout.activity_propose_call);
+        edit=false;
 
         binding.btnCall.setOnClickListener(view -> {
             Intent call = new Intent(ProposeCallActivity.this, WaitActivity.class);
@@ -39,6 +42,22 @@ public class ProposeCallActivity extends AppCompatActivity {
             Intent intent = new Intent(ProposeCallActivity.this, MainActivity.class);
             startActivity(intent);
         });
+        binding.ibtnEdit.setOnClickListener(view -> {
+
+            binding.btnSaveedit.setVisibility(View.VISIBLE);
+            binding.ibtnEdit.setVisibility(View.INVISIBLE);
+            binding.etCounterid.setFocusableInTouchMode(true);
+            binding.etCallbookName.setFocusableInTouchMode(true);
+            edit=true;
+        });
+        binding.imvStar.setOnClickListener(view -> {
+            if(edit&&bookmark){
+                binding.imvStar.setImageResource(R.drawable.star2);
+            }else if(edit&&!bookmark){
+                binding.imvStar.setImageResource(R.drawable.fullstar);
+            }
+        });
+
 
     }
 }
