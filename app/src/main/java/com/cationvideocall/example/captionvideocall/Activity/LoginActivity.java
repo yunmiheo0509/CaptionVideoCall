@@ -59,10 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!MySharedPreferences.getUserId(this).isEmpty()
                 && !MySharedPreferences.getUserPass(this).isEmpty()) {
             id = MySharedPreferences.getUserId(this);
-            Log.d("id", id);
-
             pw = MySharedPreferences.getUserPass(this);
-            Log.d("pw", pw);
             Login(id, pw, token);
         }
 
@@ -86,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void Login(String id, String pw, String token) {
         retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+        Log.d("아이디비번토큰", id + pw + token);
         Call<JsonObject> call = retrofitService.getLoginCheck(id, pw, token);
         call.enqueue(new Callback<JsonObject>() {
             @Override
