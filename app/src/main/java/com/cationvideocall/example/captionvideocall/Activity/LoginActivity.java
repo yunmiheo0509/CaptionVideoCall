@@ -59,7 +59,10 @@ public class LoginActivity extends AppCompatActivity {
         if (!MySharedPreferences.getUserId(this).isEmpty()
                 && !MySharedPreferences.getUserPass(this).isEmpty()) {
             id = MySharedPreferences.getUserId(this);
+            Log.d("id", id);
+
             pw = MySharedPreferences.getUserPass(this);
+            Log.d("pw", pw);
             Login(id, pw, token);
         }
 
