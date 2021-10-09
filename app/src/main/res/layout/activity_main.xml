@@ -14,6 +14,50 @@
             android:layout_height="match_parent">
 
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/top_navi"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_my_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="이름"
+                    android:textColor="#4E4C4C"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:shadowColor="#473838"
+                    android:text="님 안녕하세요."
+                    android:textColor="#4E4C4C"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_my_name"
+                    app:layout_constraintStart_toEndOf="@+id/tv_my_name" />
+
+                <ImageView
+                    android:id="@+id/imv_logout"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/logout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <Button
                 android:id="@+id/btn_con"
                 android:layout_width="64dp"
@@ -178,27 +222,6 @@
                 app:layout_constraintTop_toTopOf="@+id/textView"
                 app:srcCompat="@drawable/hearticon" />
 
-            <ImageView
-                android:id="@+id/imv_logout"
-                android:layout_width="36dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.05"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logout" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="로그아웃"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@+id/imv_logout"
-                app:layout_constraintStart_toStartOf="@+id/imv_logout"
-                app:layout_constraintTop_toBottomOf="@+id/imv_logout" />
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_person"
@@ -235,7 +258,6 @@
                     android:id="@+id/imv_addcounter"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -245,11 +267,9 @@
                     android:id="@+id/iv_callbook"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imv_addcounter"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.465"
                     app:srcCompat="@drawable/phonebook" />
 
                 <TextView
@@ -289,7 +309,6 @@
                     android:id="@+id/imageView9"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imv_addcounter"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

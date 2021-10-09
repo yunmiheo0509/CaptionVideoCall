@@ -25,8 +25,6 @@ public class FirebaseMessagingIDService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if (remoteMessage != null && remoteMessage.getData().size() > 0) {
-//            String messageBody = remoteMessage.getNotification().getBody();
-//            String messageTitle = remoteMessage.getNotification().getTitle();
             String info = remoteMessage.getData().get("info");
 
             if (info != null && info.equals("propose_call")) {
@@ -46,27 +44,6 @@ public class FirebaseMessagingIDService extends FirebaseMessagingService {
                 Log.d("전화 끊겼다는 FCM 받음", "전화 끊겼다는 FCM 받음");
                 NotifyCallActivity.notifyActivity.finish();
             }
-
-//            Intent intent = new Intent(this, MainActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-//            String channelId = "Chanel ID";
-//            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//            NotificationCompat.Builder notificationBuilder =
-//                    new NotificationCompat.Builder(this, channelId)
-//                            .setSmallIcon(R.mipmap.ic_launcher)
-//                            .setContentTitle(messageTitle)
-//                            .setContentText(messageBody)
-//                            .setAutoCancel(true)
-//                            .setSound(defaultSoundUri)
-//                            .setContentIntent(pendingIntent);
-//            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                String channelName = "Channel Name";
-//                NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
-//                notificationManager.createNotificationChannel(channel);
-//            }
-//            notificationManager.notify(0, notificationBuilder.build());
         }
         else{
             Log.d("파이어베이스나온 오류오류오류","엘즈문 ");

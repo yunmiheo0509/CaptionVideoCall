@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         addCaption("첫째 딸");
         addCaption("첫째 딸");
 
+        binding.tvMyName.setText(MySharedPreferences.getUserId(MainActivity.this));
+
         binding.person1.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, ProposeCallActivity.class);
             startActivity(intent);
