@@ -42,39 +42,37 @@ public class LoginActivity extends AppCompatActivity {
         checkPermission();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
+        // get token
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+                        token = task.getResult();
+                    }
+                });
+
+        // SharedPreferences 안에 값이 있을 때 -> LoginActivity
+        if (!MySharedPreferences.getUserId(this).isEmpty()
+                || MySharedPreferences.getUserPass(this).isEmpty()) {
+            id = MySharedPreferences.getUserId(this);
+            pw = MySharedPreferences.getUserPass(this);
+            Login(id, pw, token);
+        }
+
         // 로그인 버튼 클릭시
         binding.btnLogin.setOnClickListener(view -> {
-            // get token
-            FirebaseMessaging.getInstance().getToken()
-                    .addOnCompleteListener(new OnCompleteListener<String>() {
-                        @Override
-                        public void onComplete(@NonNull Task<String> task) {
-                            if (!task.isSuccessful()) {
-                                Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                                return;
-                            }
-                            token = task.getResult();
-                        }
-                    });
-
-            // SharedPreferences 안에 값이 저장되어 있지 않을 때 -> LoginActivity
-            if (MySharedPreferences.getUserId(this).isEmpty()
-                    || MySharedPreferences.getUserPass(this).isEmpty()) {
-                if (!binding.etId.getText().toString().equals("") && !binding.etPw.getText().toString().equals("")) {
-                    id = binding.etId.getText().toString();
-                    pw = binding.etPw.getText().toString();
-                } else {
-                    Toast.makeText(LoginActivity.this, "아이디와 패스워드를 입력해주세요", Toast.LENGTH_SHORT).show();
-                }
-            }
-            // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity
-            else {
-                id = MySharedPreferences.getUserId(this);
-                pw = MySharedPreferences.getUserPass(this);
+            if (!binding.etId.getText().toString().equals("") && !binding.etPw.getText().toString().equals("")) {
+                id = binding.etId.getText().toString();
+                pw = binding.etPw.getText().toString();
+            } else {
+                Toast.makeText(LoginActivity.this, "아이디와 패스워드를 입력해주세요", Toast.LENGTH_SHORT).show();
             }
             Login(id, pw, token);
         });
-
 
         //회원가입버튼 클릭시
         binding.btnResgist.setOnClickListener(view -> {
