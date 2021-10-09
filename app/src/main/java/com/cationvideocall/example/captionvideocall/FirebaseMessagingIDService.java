@@ -6,12 +6,11 @@ import android.util.Log;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.cationvideocall.example.captionvideocall.Activity.NotifyCallActivity;
+import com.cationvideocall.example.captionvideocall.Activity.WaitActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class FirebaseMessagingIDService extends FirebaseMessagingService {
-
-    public static final String ACTION_FINISH = "com.captionvideocall.example.captionvideocall.ACTION_FINISH";
 
     @Override
     public void onNewToken(String s) {
@@ -44,8 +43,8 @@ public class FirebaseMessagingIDService extends FirebaseMessagingService {
                 Log.d("스타트 액티비티", user_id + room_num);
             }
             else if (info != null && info.equals("cancel_call")){
-                LocalBroadcastManager.getInstance(getApplicationContext())
-                        .sendBroadcast(new Intent(ACTION_FINISH));
+                Log.d("전화 끊겼다는 FCM 받음", "전화 끊겼다는 FCM 받음");
+                NotifyCallActivity.notifyActivity.finish();
             }
 
 //            Intent intent = new Intent(this, MainActivity.class);

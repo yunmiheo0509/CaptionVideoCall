@@ -4,6 +4,7 @@ import com.cationvideocall.example.captionvideocall.FirebaseMessagingIDService;
 import com.google.gson.JsonObject;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -30,18 +31,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class NotifyCallActivity extends AppCompatActivity {
     private ActivityNotifyCallBinding binding;
     private RetrofitService retrofitService1,retrofitService2;
     Ringtone rt;
+
+    public static Activity notifyActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify_call);
 
-        LocalBroadcastManager.getInstance(getApplicationContext())
-                .registerReceiver(finishReceiver,
-                        new IntentFilter(FirebaseMessagingIDService.ACTION_FINISH));
+        // 전화 끊기면 알려주는 애
+        notifyActivity = this;
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_notify_call);
         Intent intent = getIntent();
@@ -116,17 +120,4 @@ public class NotifyCallActivity extends AppCompatActivity {
 
     }
 
-    private final BroadcastReceiver finishReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            finish();
-        }
-    };
-
-    @Override
-    protected void onDestroy() {
-        LocalBroadcastManager.getInstance(getApplicationContext())
-                .unregisterReceiver(finishReceiver);
-        super.onDestroy();
-    }
 }
