@@ -31,58 +31,49 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private RetrofitService retrofitService;
-    private String token;
+    private String id, pw, token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-// 퍼미션 체크를 위한 루틴입니다.
+
+        // 퍼미션 체크
         checkPermission();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        // SharedPreferences 안에 값이 저장되어 있지 않을 때 -> LoginActivity
-        if (MySharedPreferences.getUserId(this).isEmpty()
-                || MySharedPreferences.getUserPass(this).isEmpty()) {
-            Login();
-        }
-        // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity
-        else {
-            retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
-            String id =MySharedPreferences.getUserId(this);
-            String pw = MySharedPreferences.getUserPass(this);
-            Call<JsonObject> call = retrofitService.getLoginCheck(id,pw,token);
 
-            call.enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    if (response.isSuccessful()) {
-                        Log.d("연결 성공", response.message());
-                        JsonObject jsonObject = response.body();
-                        String code = jsonObject.get("code").toString();
-                        if (code.equals("200")) {
-                            Toast.makeText(LoginActivity.this, id + "님 자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            // 204
-                            Toast.makeText(LoginActivity.this, "아이디 또는 패스워드가 틀렸습니다.", Toast.LENGTH_SHORT).show();
+        // 로그인 버튼 클릭시
+        binding.btnLogin.setOnClickListener(view -> {
+            // get token
+            FirebaseMessaging.getInstance().getToken()
+                    .addOnCompleteListener(new OnCompleteListener<String>() {
+                        @Override
+                        public void onComplete(@NonNull Task<String> task) {
+                            if (!task.isSuccessful()) {
+                                Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                                return;
+                            }
+                            token = task.getResult();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "인터넷 연결을 확인해주세요"
-                                , Toast.LENGTH_SHORT).show();
-                        Log.d("오류발생", response.message());
-                    }
+                    });
+
+            // SharedPreferences 안에 값이 저장되어 있지 않을 때 -> LoginActivity
+            if (MySharedPreferences.getUserId(this).isEmpty()
+                    || MySharedPreferences.getUserPass(this).isEmpty()) {
+                if (!binding.etId.getText().toString().equals("") && !binding.etPw.getText().toString().equals("")) {
+                    id = binding.etId.getText().toString();
+                    pw = binding.etPw.getText().toString();
+                } else {
+                    Toast.makeText(LoginActivity.this, "아이디와 패스워드를 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    Log.d("통신실패", t.getMessage());
-                }
-            });
-        }
-//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
+            }
+            // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity
+            else {
+                id = MySharedPreferences.getUserId(this);
+                pw = MySharedPreferences.getUserPass(this);
+            }
+            Login(id, pw, token);
+        });
 
 
         //회원가입버튼 클릭시
@@ -92,59 +83,37 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void Login() {
-        binding.btnLogin.setOnClickListener(view -> {
-            if (!binding.etId.getText().toString().equals("") && !binding.etPw.getText().toString().equals("")) {
-                retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
-                FirebaseMessaging.getInstance().getToken()
-                        .addOnCompleteListener(new OnCompleteListener<String>() {
-                            @Override
-                            public void onComplete(@NonNull Task<String> task) {
-                                if (!task.isSuccessful()) {
-                                    Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                                    return;
-                                }
-
-                                // Get new FCM registration token
-                                token = task.getResult();
-                            }
-                        });
-
-                Call<JsonObject> call = retrofitService.getLoginCheck(binding.etId.getText().toString(),
-                        binding.etPw.getText().toString(), token);
-
-                call.enqueue(new Callback<JsonObject>() {
-                    @Override
-                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        if (response.isSuccessful()) {
-                            Log.d("연결 성공", response.message());
-                            JsonObject jsonObject = response.body();
-                            String code = jsonObject.get("code").toString();
-                            if (code.equals("200")) {
-                                MySharedPreferences.setUserId(LoginActivity.this, binding.etId.getText().toString());
-                                MySharedPreferences.setUserPass(LoginActivity.this, binding.etPw.getText().toString());
-                                Toast.makeText(LoginActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                // 204
-                                Toast.makeText(LoginActivity.this, "check id and password, It's wrong", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(LoginActivity.this, "check the internet"
-                                    , Toast.LENGTH_SHORT).show();
-                            Log.d("오류발생", response.message());
-                        }
+    public void Login(String id, String pw, String token) {
+        retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+        Call<JsonObject> call = retrofitService.getLoginCheck(id, pw, token);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    Log.d("연결 성공", response.message());
+                    JsonObject jsonObject = response.body();
+                    String code = jsonObject.get("code").toString();
+                    if (code.equals("200")) {
+                        MySharedPreferences.setUserId(LoginActivity.this, id);
+                        MySharedPreferences.setUserPass(LoginActivity.this, pw);
+                        Toast.makeText(LoginActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        // 204
+                        Toast.makeText(LoginActivity.this, "check id and password, It's wrong", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(LoginActivity.this, "check the internet"
+                            , Toast.LENGTH_SHORT).show();
+                    Log.d("오류발생", response.message());
+                }
+            }
 
-                    @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-                        Log.d("통신실패", t.getMessage());
-                    }
-                });
-            } else {
-                Toast.makeText(LoginActivity.this, "아이디 또는 패스워드를 입력해주세요", Toast.LENGTH_SHORT).show();
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("통신실패", t.getMessage());
             }
         });
     }
