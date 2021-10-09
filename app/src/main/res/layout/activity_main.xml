@@ -47,9 +47,11 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/l_call"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
                 app:layout_constraintTop_toBottomOf="@+id/l_logo">
 
                 <TextView
@@ -59,17 +61,15 @@
                     android:text="아이디로 전화걸기"
                     android:textColor="#000000"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/edt_id"
-                    android:layout_width="200sp"
+                    android:layout_width="150sp"
                     android:layout_height="wrap_content"
                     android:height="48dp"
-                    android:hint="상대방 아이디"
-                    app:layout_constraintEnd_toEndOf="@+id/textView6"
+                    android:hint="아이디"
                     app:layout_constraintStart_toStartOf="@+id/textView6"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -77,7 +77,7 @@
                     android:id="@+id/btn_con"
                     android:layout_width="64dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:background="@drawable/rounded_button"
                     android:fontFamily="sans-serif"
                     android:text="연결"
@@ -85,6 +85,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/edt_id"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/edt_id"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -138,7 +139,7 @@
                 android:id="@+id/l_bookmark"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
@@ -146,24 +147,23 @@
 
                 <TextView
                     android:id="@+id/tv_2"
-                    android:layout_width="74dp"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="주요 연락처"
                     android:textColor="#000000"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="19dp"
                     android:layout_height="21dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_2"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_2"
-                    app:srcCompat="@drawable/star2" />
+                    app:srcCompat="@drawable/fullstar" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview_person"
@@ -185,7 +185,7 @@
                 android:id="@+id/constraintLayout3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintStart_toStartOf="parent"
@@ -195,8 +195,7 @@
                     android:id="@+id/imageView5"
                     android:layout_width="19dp"
                     android:layout_height="21dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView"
                     app:srcCompat="@drawable/hearticon" />
 
@@ -204,12 +203,12 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="최근 통화 상대"
                     android:textColor="#000000"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView5"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
