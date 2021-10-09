@@ -1,9 +1,14 @@
 package com.cationvideocall.example.captionvideocall.Activity;
 
+import com.cationvideocall.example.captionvideocall.FirebaseMessagingIDService;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.gson.JsonObject;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -15,6 +20,7 @@ import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.captionvideocall.example.captionvideocall.R;
 import com.captionvideocall.example.captionvideocall.databinding.ActivityNotifyCallBinding;
@@ -33,6 +39,10 @@ public class NotifyCallActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify_call);
+
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .registerReceiver(finishReceiver,
+                        new IntentFilter(FirebaseMessagingIDService.ACTION_FINISH));
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_notify_call);
         Intent intent = getIntent();
@@ -105,5 +115,19 @@ public class NotifyCallActivity extends AppCompatActivity {
             });
         });
 
+    }
+
+    private final BroadcastReceiver finishReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .unregisterReceiver(finishReceiver);
+        super.onDestroy();
     }
 }
