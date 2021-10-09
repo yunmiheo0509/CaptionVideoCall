@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // SharedPreferences 안에 값이 있을 때 -> LoginActivity
         if (!MySharedPreferences.getUserId(this).isEmpty()
-                || MySharedPreferences.getUserPass(this).isEmpty()) {
+                && !MySharedPreferences.getUserPass(this).isEmpty()) {
             id = MySharedPreferences.getUserId(this);
             pw = MySharedPreferences.getUserPass(this);
             Login(id, pw, token);
