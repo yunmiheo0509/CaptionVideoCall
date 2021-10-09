@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             MySharedPreferences.clearUser(getApplicationContext());
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-//            finish();
+            finish();
         });
 //        binding.person2.setOnClickListener(view -> {
 //            Intent intent = new Intent(MainActivity.this, TestActivity.class);
