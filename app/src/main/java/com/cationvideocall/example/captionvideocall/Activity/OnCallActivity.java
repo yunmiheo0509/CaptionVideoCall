@@ -136,8 +136,6 @@ public class OnCallActivity extends AppCompatActivity {
         // CloseType.OTHER_UNEXPECTED : 상대방이 끊어져서 연결이 종료된 경우
         // CloseType.UNKNOWN : 에러에 의한 연결 종료, 기타 연결 종료 이유 불명확
         remonCall.onClose(closeType -> {
-            // 영웅 추가 - 녹음 정지
-            captionCreator.stopRecording();
 
             // 에러에 의한 종료인지 체크
             if (closeType == CloseType.UNKNOWN && latestError != null) {
@@ -171,6 +169,10 @@ public class OnCallActivity extends AppCompatActivity {
             remonCall.close();
         }
         super.onDestroy();
+        // 영웅 추가 - 녹음 정지
+        if (captionCreator != null){
+            captionCreator.stopRecording();
+        }
     }
 
 
@@ -199,7 +201,7 @@ public class OnCallActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (!is_English(str)){
-                    if (!list.isEmpty() && (list.get(list.size()-1) + str).length() < 10) {
+                    if (!list.isEmpty() && (list.get(list.size()-1) + str).length() < 14) {
                         list.set(list.size()-1, list.get(list.size()-1) + " " + str);
                     } else {
                         list.add(str) ;
