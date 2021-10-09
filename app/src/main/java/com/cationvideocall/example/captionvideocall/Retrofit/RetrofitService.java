@@ -11,7 +11,8 @@ public interface RetrofitService {
     @FormUrlEncoded
     @POST(Common.LoginURL)
     Call<JsonObject> getLoginCheck(@Field("user_id") String user_id,
-                                   @Field("password") String password);
+                                   @Field("password") String password,
+                                   @Field("token") String token);
 
 
     @FormUrlEncoded

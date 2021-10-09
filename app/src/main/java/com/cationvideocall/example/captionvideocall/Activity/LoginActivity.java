@@ -1,9 +1,15 @@
 package com.cationvideocall.example.captionvideocall.Activity;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.cationvideocall.example.captionvideocall.MySharedPreferences;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.JsonObject;
 import com.captionvideocall.example.captionvideocall.R;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
@@ -25,7 +31,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private RetrofitService retrofitService;
-
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +64,22 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(view -> {
             if (!binding.etId.getText().toString().equals("") && !binding.etPw.getText().toString().equals("")) {
                 retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+                FirebaseMessaging.getInstance().getToken()
+                        .addOnCompleteListener(new OnCompleteListener<String>() {
+                            @Override
+                            public void onComplete(@NonNull Task<String> task) {
+                                if (!task.isSuccessful()) {
+                                    Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                                    return;
+                                }
+
+                                // Get new FCM registration token
+                                token = task.getResult();
+                            }
+                        });
+
                 Call<JsonObject> call = retrofitService.getLoginCheck(binding.etId.getText().toString(),
-                        binding.etPw.getText().toString());
+                        binding.etPw.getText().toString(), token);
 
                 call.enqueue(new Callback<JsonObject>() {
                     @Override

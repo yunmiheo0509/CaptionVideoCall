@@ -1,7 +1,6 @@
 package com.cationvideocall.example.captionvideocall.Activity;
 
 import com.cationvideocall.example.captionvideocall.FirebaseMessagingIDService;
-import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.gson.JsonObject;
 
 import android.annotation.SuppressLint;
