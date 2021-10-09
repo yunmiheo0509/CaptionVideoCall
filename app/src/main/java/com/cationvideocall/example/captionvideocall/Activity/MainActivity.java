@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> list;
     bookmarkAdapter adapter;
     RetrofitService retrofitService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         list = new ArrayList<>();
-        binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)) ;
-        adapter = new bookmarkAdapter(list) ;
+        binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        adapter = new bookmarkAdapter(list);
         binding.recyclerviewPerson.setAdapter(adapter);
 
         addCaption("막내 아들");
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         addCaption("첫째 딸");
         addCaption("첫째 딸");
         addCaption("첫째 딸");
+
         binding.person1.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, ProposeCallActivity.class);
             startActivity(intent);
@@ -66,21 +68,30 @@ public class MainActivity extends AppCompatActivity {
 
         // 아이디로 전화걸기
         binding.btnCon.setOnClickListener(view -> {
-            if (binding.edtId.getText().toString() != null) {
+            if (!binding.edtId.getText().toString().equals("")) {
                 Intent call = new Intent(MainActivity.this, WaitActivity.class);
-            call.putExtra("counter_id", binding.edtId.getText().toString());
+                call.putExtra("counter_id", binding.edtId.getText().toString());
                 startActivity(call);
-            }else{
+            } else {
                 Toast.makeText(MainActivity.this, "아이디를 입력해주세요", Toast.LENGTH_SHORT).show();
             }
 
         });
+        binding.ivCallbook.setOnClickListener(view -> {
+            Intent callbook = new Intent(MainActivity.this, CallBookActivity.class);
+            startActivity(callbook);
+        });
+        binding.imvAddcounter.setOnClickListener(view -> {
+            Intent addCount = new Intent(MainActivity.this, NewCounterActivity.class);
+            startActivity(addCount);
+        });
     }
-    public void addCaption(String str){
+
+    public void addCaption(String str) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                list.add(str) ;
+                list.add(str);
                 adapter.notifyDataSetChanged();
             }
         });

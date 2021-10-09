@@ -33,5 +33,11 @@ public interface RetrofitService {
     @POST(Common.ResponseURL)
     Call<JsonObject> getResponse(@Field("user_id") String user_id,
                                @Field("response") boolean response);
+    @FormUrlEncoded
+    @POST(Common.AddCallBookURL)
+    Call<JsonObject> addCallBook(@Field("user_id") String user_id,
+                                 @Field("counter_id") String counter_id,
+                                 @Field("name") String name,
+                                 @Field("bookmark") boolean bookmark);
 
 }

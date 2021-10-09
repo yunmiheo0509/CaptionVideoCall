@@ -46,11 +46,43 @@ public class LoginActivity extends AppCompatActivity {
         }
         // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity
         else {
-            Toast.makeText(this, MySharedPreferences.getUserId(this) + "님 자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+            String id =MySharedPreferences.getUserId(this);
+            String pw = MySharedPreferences.getUserPass(this);
+            Call<JsonObject> call = retrofitService.getLoginCheck(id,pw,token);
+
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if (response.isSuccessful()) {
+                        Log.d("연결 성공", response.message());
+                        JsonObject jsonObject = response.body();
+                        String code = jsonObject.get("code").toString();
+                        if (code.equals("200")) {
+                            Toast.makeText(LoginActivity.this, id + "님 자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            // 204
+                            Toast.makeText(LoginActivity.this, "아이디 또는 패스워드가 틀렸습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(LoginActivity.this, "인터넷 연결을 확인해주세요"
+                                , Toast.LENGTH_SHORT).show();
+                        Log.d("오류발생", response.message());
+                    }
+                }
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Log.d("통신실패", t.getMessage());
+                }
+            });
         }
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
 
 
         //회원가입버튼 클릭시

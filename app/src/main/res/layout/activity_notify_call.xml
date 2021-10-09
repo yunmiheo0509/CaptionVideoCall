@@ -27,7 +27,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginBottom="120dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imv_addcounter"
             app:srcCompat="@drawable/redcall"
             tools:srcCompat="@drawable/redcall" />
 
@@ -37,7 +37,7 @@
             android:layout_height="70dp"
             android:layout_marginEnd="50dp"
             app:layout_constraintBottom_toBottomOf="@+id/imv_rejectCall"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/imv_addcounter"
             app:srcCompat="@drawable/call"
             tools:srcCompat="@drawable/call" />
 
@@ -53,10 +53,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/imv_addcounter" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imv_addcounter"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"

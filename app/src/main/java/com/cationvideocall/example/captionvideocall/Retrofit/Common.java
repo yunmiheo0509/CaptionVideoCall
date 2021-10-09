@@ -6,6 +6,7 @@ public class Common {
     public static final String RegisterURL = "/register"; //회원가입\
     public static final String proposeURL = "/propose_call"; //
     public static final String cancelCallURL = "/cancel_call"; //
+    public static final String AddCallBookURL = "/cancel_call"; //연락처등록
 
     public static final String ResponseURL = "/response_call"; //전화수락 및 거절내용
 
