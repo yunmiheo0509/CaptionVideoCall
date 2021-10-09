@@ -38,7 +38,7 @@ public class NotifyCallActivity extends AppCompatActivity {
     Ringtone rt;
 
     public static Activity notifyActivity;
-    final Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +60,9 @@ public class NotifyCallActivity extends AppCompatActivity {
 
         //진동 및 소리
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         vibrator.vibrate(new long[]{500,1000,500,1000},0);
+
         rt = RingtoneManager.getRingtone(getApplicationContext(),notification);
         rt.play();
 
