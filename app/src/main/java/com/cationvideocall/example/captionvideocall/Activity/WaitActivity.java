@@ -92,6 +92,27 @@ public class WaitActivity extends AppCompatActivity {
 
         binding.imvRejectCall.setOnClickListener(view -> {
             Toast.makeText(WaitActivity.this, "통화를 취소하셨습니다.", Toast.LENGTH_SHORT).show();
+
+            Call<JsonObject> cancelCall = retrofitService.cancelCall(user_id);
+
+            cancelCall.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if (response.isSuccessful()) {
+                        Log.d("연결 성공", response.toString());
+                        JsonObject jsonObject = response.body();
+                        String code = jsonObject.get("code").toString();
+                        Log.d("code: ", code);
+                    }else{
+                        Log.d("연결 실패", response.toString());
+                    }
+                }
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Log.d("통신실패", t.getMessage());
+                }
+            });
+
             finish();
         });
     }

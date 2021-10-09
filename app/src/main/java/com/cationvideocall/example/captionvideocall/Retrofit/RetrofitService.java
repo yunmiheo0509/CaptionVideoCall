@@ -24,6 +24,9 @@ public interface RetrofitService {
     Call<JsonObject> getPropose(@Field("user_id") String user_id,
                                  @Field("counter_id") String counter_id);
 
+    @FormUrlEncoded
+    @POST(Common.cancelCallURL)
+    Call<JsonObject> cancelCall(@Field("user_id") String user_id);
 
     @FormUrlEncoded
     @POST(Common.ResponseURL)
