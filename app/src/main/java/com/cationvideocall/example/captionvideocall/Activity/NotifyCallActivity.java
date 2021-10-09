@@ -38,6 +38,7 @@ public class NotifyCallActivity extends AppCompatActivity {
     Ringtone rt;
 
     public static Activity notifyActivity;
+    final Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class NotifyCallActivity extends AppCompatActivity {
 
         //진동 및 소리
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        final Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+
         vibrator.vibrate(new long[]{500,1000,500,1000},0);
         rt = RingtoneManager.getRingtone(getApplicationContext(),notification);
         rt.play();
@@ -67,8 +68,7 @@ public class NotifyCallActivity extends AppCompatActivity {
 
         binding.tvWhocall.setText(counter_id);
         binding.imvGetCall.setOnClickListener(view -> {
-            rt.stop();
-            vibrator.cancel();
+
             retrofitService1 = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
             Call<JsonObject> call = retrofitService1.getResponse(counter_id,true);
@@ -95,8 +95,6 @@ public class NotifyCallActivity extends AppCompatActivity {
             });
         });
         binding.imvRejectCall.setOnClickListener(view -> {
-            rt.stop();
-            vibrator.cancel();
             retrofitService2 = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
             Call<JsonObject> call = retrofitService2.getResponse(counter_id,false);
@@ -119,6 +117,13 @@ public class NotifyCallActivity extends AppCompatActivity {
             });
         });
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        rt.stop();
+        vibrator.cancel();
     }
 
 }

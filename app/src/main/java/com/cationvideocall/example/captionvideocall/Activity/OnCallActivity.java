@@ -24,7 +24,7 @@ import android.widget.Adapter;
 import android.widget.ImageView;
 
 import com.captionvideocall.example.captionvideocall.databinding.ActivityOnCallBinding;
-import com.cationvideocall.example.captionvideocall.captioncreator.CaptionCreator;
+import com.cationvideocall.example.captionvideocall.captionCreator.CaptionCreator;
 import com.cationvideocall.example.captionvideocall.recyclerview.SimpleTextAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.captionvideocall.example.captionvideocall.R;
@@ -198,7 +198,11 @@ public class OnCallActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                list.add(str) ;
+                if (!list.isEmpty() && (list.get(list.size()-1) + str).length() > 10) {
+                    list.set(list.size()-1, list.get(list.size()-1) + " " + str);
+                } else {
+                    list.add(str) ;
+                }
                 binding.recyclerView.smoothScrollToPosition(binding.recyclerView.getAdapter().getItemCount() - 1);
                 adapter.notifyDataSetChanged();
             }

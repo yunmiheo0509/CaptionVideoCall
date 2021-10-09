@@ -1,15 +1,15 @@
-package com.cationvideocall.example.captionvideocall.captioncreator;
+package com.cationvideocall.example.captionvideocall.captionCreator;
 
 import android.annotation.SuppressLint;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
+import android.media.audiofx.NoiseSuppressor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
 
-import com.google.android.gms.common.util.ArrayUtils;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -46,12 +46,16 @@ public class CaptionCreator {
                     16000, // sampling frequency
                     AudioFormat.CHANNEL_IN_MONO,
                     AudioFormat.ENCODING_PCM_16BIT);
+
             @SuppressLint("MissingPermission") AudioRecord audio = new AudioRecord(
                     MediaRecorder.AudioSource.VOICE_RECOGNITION,
                     16000, // sampling frequency
                     AudioFormat.CHANNEL_IN_MONO,
                     AudioFormat.ENCODING_PCM_16BIT,
                     bufferSize);
+            
+            // 노이즈 제거 모듈
+            NoiseSuppressor.create(audio.getAudioSessionId());
 
             if (audio.getState() != AudioRecord.STATE_INITIALIZED) {
                 throw new RuntimeException("ERROR: Failed to initialize audio device. Allow app to access microphone");
@@ -123,7 +127,7 @@ public class CaptionCreator {
                             cnt = 0;
                         }
                         // endIndex 를 저장하고 레벨체킹을 끝냄
-                        if (cnt > 10) {
+                        if (cnt > 5) {
                             System.out.println("endIndex 를 저장하고 레벨체킹을 끝냄");
 //                            System.out.println("startingIndex" + startingIndex);
                             endIndex = lenSpeech;
