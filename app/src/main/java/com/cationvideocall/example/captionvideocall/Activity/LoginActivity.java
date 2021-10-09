@@ -52,16 +52,16 @@ public class LoginActivity extends AppCompatActivity {
                             return;
                         }
                         token = task.getResult();
+                        // SharedPreferences 안에 값이 있을 때 -> LoginActivity
+                        if (!MySharedPreferences.getUserId(LoginActivity.this).isEmpty()
+                                && !MySharedPreferences.getUserPass(LoginActivity.this).isEmpty()) {
+                            id = MySharedPreferences.getUserId(LoginActivity.this);
+                            pw = MySharedPreferences.getUserPass(LoginActivity.this);
+                            Login(id, pw, token);
+                        }
                     }
                 });
 
-        // SharedPreferences 안에 값이 있을 때 -> LoginActivity
-        if (!MySharedPreferences.getUserId(this).isEmpty()
-                && !MySharedPreferences.getUserPass(this).isEmpty()) {
-            id = MySharedPreferences.getUserId(this);
-            pw = MySharedPreferences.getUserPass(this);
-            Login(id, pw, token);
-        }
 
         // 로그인 버튼 클릭시
         binding.btnLogin.setOnClickListener(view -> {
