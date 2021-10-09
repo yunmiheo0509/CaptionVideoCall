@@ -55,12 +55,23 @@
             android:id="@+id/tv_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
             android:text="아이디"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/et_counterid"
-            app:layout_constraintEnd_toStartOf="@+id/et_counterid"
+            app:layout_constraintStart_toStartOf="@+id/tv_id2"
             app:layout_constraintTop_toTopOf="@+id/et_counterid" />
+
+        <TextView
+            android:id="@+id/tv_id2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:text="이름"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_callbookName"
+            app:layout_constraintEnd_toStartOf="@+id/et_callbookName"
+            app:layout_constraintTop_toTopOf="@+id/et_callbookName"
+            app:layout_constraintVertical_bias="0.461" />
 
         <EditText
             android:id="@+id/et_counterid"
@@ -87,36 +98,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/callimg" />
 
-        <ImageView
-            android:id="@+id/imv_star"
-            android:layout_width="46dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/et_counterid"
-            app:layout_constraintStart_toEndOf="@+id/tv_id"
-            app:layout_constraintTop_toBottomOf="@+id/et_counterid"
-            app:srcCompat="@drawable/star2" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="즐겨찾기"
-            app:layout_constraintBottom_toBottomOf="@+id/imv_star"
-            app:layout_constraintEnd_toStartOf="@+id/imv_star"
-            app:layout_constraintStart_toStartOf="@+id/tv_id"
-            app:layout_constraintTop_toTopOf="@+id/imv_star" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="편집"
-            app:layout_constraintEnd_toEndOf="@+id/ibtn_edit"
-            app:layout_constraintStart_toStartOf="@+id/ibtn_edit"
-            app:layout_constraintTop_toBottomOf="@+id/ibtn_edit" />
-
         <Button
             android:id="@+id/btn_saveedit"
             android:layout_width="wrap_content"
@@ -131,13 +112,16 @@
 
         <ImageButton
             android:id="@+id/ibtn_edit"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="28dp"
-            android:backgroundTint="#EFFFFD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:adjustViewBounds="true"
+            android:backgroundTint="#00FFFFFF"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/editpen" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

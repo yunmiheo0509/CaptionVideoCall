@@ -1,6 +1,6 @@
 package com.cationvideocall.example.captionvideocall.Retrofit;
 
-import com.cationvideocall.example.captionvideocall.SearchResultModel;
+import com.cationvideocall.example.captionvideocall.recyclerview.SearchResultModel;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -43,4 +43,19 @@ public interface RetrofitService {
     @FormUrlEncoded
     @POST(Common.getBookURL)
     Call<SearchResultModel> getBook(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(Common.getBookMarkURL)
+    Call<SearchResultModel> getBookMark(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(Common.editBookURL)
+    Call<JsonObject> editBook(@Field("user_id") String user_id,
+                              @Field("counter_id") String counter_id,
+                              @Field("name") String name);
+    @FormUrlEncoded
+    @POST(Common.editBookMarkURL)
+    Call<JsonObject> editBookMark(@Field("user_id") String user_id,
+                              @Field("counter_id") String counter_id,
+                              @Field("bookmark") boolean bookmark);
 }

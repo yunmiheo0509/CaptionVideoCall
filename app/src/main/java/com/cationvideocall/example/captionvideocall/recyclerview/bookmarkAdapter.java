@@ -1,69 +1,83 @@
 package com.cationvideocall.example.captionvideocall.recyclerview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.captionvideocall.example.captionvideocall.R;
+import com.cationvideocall.example.captionvideocall.Activity.ProposeCallActivity;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class bookmarkAdapter extends RecyclerView.Adapter<bookmarkAdapter.ViewHolder> {
+public class bookmarkAdapter extends RecyclerView.Adapter<bookmarkAdapter.ItemViewHolder> {
 
-    private ArrayList<String> mData = null;
+    private Context c;
+    private List<CallBookListModel> dataList;
 
-    // 아이템 뷰를 저장하는 뷰홀더 클래스.
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_bookmarkname;
-//        ImageView imv_person;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-
-            // 뷰 객체에 대한 참조. (hold strong reference)
-            tv_bookmarkname = itemView.findViewById(R.id.et_callbookName);
-//            imv_person = itemView.findViewById(R.id.imv_bookmarkperson);
-        }
+    public bookmarkAdapter(Context c, List<CallBookListModel> dataList) {
+        this.c = c;
+        this.dataList = dataList;
     }
 
-    // 생성자에서 데이터 리스트 객체를 전달받음.
-    public bookmarkAdapter(ArrayList<String> list) {
-        mData = list;
-    }
-
-    // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
+    @NonNull
     @Override
-    public bookmarkAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public bookmarkAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = inflater.inflate(R.layout.call_book_mark, parent, false);
-        ViewHolder vh = new ViewHolder(view);
+        ItemViewHolder vh = new ItemViewHolder(view);
         return vh;
+//        View view = LayoutInflater.from(c).inflate(R.layout.call_book_mark, parent, false);
+//        return new bookmarkAdapter.ItemViewHolder(view);
     }
 
-    // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
     @Override
-    public void onBindViewHolder(bookmarkAdapter.ViewHolder holder, int position) {
-        String text = mData.get(position);
-        holder.tv_bookmarkname.setText(text);
+    public void onBindViewHolder(@NonNull final bookmarkAdapter.ItemViewHolder holder, final int position) {
+        // Item을 하나, 하나 보여주는(bind 되는) 함수
+//        holder.onBind(listData.get(position));
+        holder.name.setText(dataList.get(position).getName());
+
     }
 
-    // getItemCount() - 전체 데이터 갯수 리턴.
-//    @Override
-//    public int getItemCount() {
-//        return mData.size() ;
-//    }
     @Override
     public int getItemCount() {
-        if (mData != null) {
-            return mData.size();
+        // RecyclerView의 총 개수
+        return dataList.size();
+    }
+
+
+    // RecyclerView의 핵심인 ViewHolder
+    // 여기서 subView를 setting
+    class ItemViewHolder extends RecyclerView.ViewHolder {
+        private TextView name;
+
+
+        ItemViewHolder(View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.et_callbookName);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //writingActivity로 인텐트 전달
+                    int position = getAdapterPosition();
+                    Intent intent = new Intent(v.getContext(), ProposeCallActivity.class);
+
+                    intent.putExtra("name", dataList.get(position).getName());
+                    intent.putExtra("counter_id", dataList.get(position).getCounterId());
+                    intent.putExtra("bookmark", dataList.get(position).getBookmark());
+                    v.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                }
+            });
         }
-        return 0;
     }
 }
 

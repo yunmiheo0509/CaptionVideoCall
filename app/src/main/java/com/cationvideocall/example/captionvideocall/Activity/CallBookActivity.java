@@ -6,16 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.captionvideocall.example.captionvideocall.R;
-import com.cationvideocall.example.captionvideocall.CallBookListModel;
+import com.cationvideocall.example.captionvideocall.recyclerview.CallBookListModel;
 import com.cationvideocall.example.captionvideocall.MySharedPreferences;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitService;
-import com.cationvideocall.example.captionvideocall.SearchResultModel;
-import com.cationvideocall.example.captionvideocall.recyclerview.bookmarkAdapter;
+import com.cationvideocall.example.captionvideocall.recyclerview.SearchResultModel;
 import com.cationvideocall.example.captionvideocall.recyclerview.callbookAdapter;
 
 import java.util.List;
@@ -53,8 +51,11 @@ public class CallBookActivity extends AppCompatActivity {
 //                            SearchResultModel searchWritingResult = response.body();
 //                            Log.d("검색", searchWritingResult.toString());
                     dataList = response.body();
-                    dataInfo = dataList.results;
-                    if (response.body().getCode().equals("200")) {
+                    dataInfo = dataList.getResult();
+                    if(dataInfo!=null) {
+                        Log.d("전화번호북데이터인포", dataInfo.toString());
+                    }else Log.d("전화번호북데이터인포", "null");
+                    if (response.body().getCode()==200) {
                         callbookAdapter= new callbookAdapter(getApplicationContext(), dataInfo);
                         recyclerView.setAdapter(callbookAdapter);
                     } else {
@@ -72,5 +73,7 @@ public class CallBookActivity extends AppCompatActivity {
                 Log.d("ssss", t.getMessage());
             }
         });
+
+
     }
 }

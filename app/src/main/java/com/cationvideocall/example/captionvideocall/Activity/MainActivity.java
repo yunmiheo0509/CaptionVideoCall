@@ -3,6 +3,7 @@ package com.cationvideocall.example.captionvideocall.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,14 +12,15 @@ import android.widget.Toast;
 
 import com.captionvideocall.example.captionvideocall.R;
 import com.captionvideocall.example.captionvideocall.databinding.ActivityMainBinding;
+import com.cationvideocall.example.captionvideocall.recyclerview.CallBookListModel;
 import com.cationvideocall.example.captionvideocall.MySharedPreferences;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitService;
-import com.cationvideocall.example.captionvideocall.recyclerview.SimpleTextAdapter;
+import com.cationvideocall.example.captionvideocall.recyclerview.SearchResultModel;
 import com.cationvideocall.example.captionvideocall.recyclerview.bookmarkAdapter;
-import com.google.gson.JsonObject;
+import com.cationvideocall.example.captionvideocall.recyclerview.callbookAdapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,9 +28,11 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    ArrayList<String> list;
-    bookmarkAdapter adapter;
+
+    bookmarkAdapter bookmarkAdapter;
     RetrofitService retrofitService;
+    private List<CallBookListModel> dataInfo;
+    private SearchResultModel dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +40,46 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        list = new ArrayList<>();
+        //북마크 부분 화면에 나타내기
         binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        adapter = new bookmarkAdapter(list);
-        binding.recyclerviewPerson.setAdapter(adapter);
+        retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+        String user_id = MySharedPreferences.getUserId(this);
 
-        addCaption("막내 아들");
-        addCaption("둘째 아들");
-        addCaption("첫째 딸");
-        addCaption("첫째 딸");
-        addCaption("첫째 딸");
-        addCaption("첫째 딸");
-        addCaption("첫째 딸");
+        Call<SearchResultModel> call = retrofitService.getBookMark(user_id);
+        call.enqueue(new Callback<SearchResultModel>() {
+            @Override
+            public void onResponse(Call<SearchResultModel> call, Response<SearchResultModel> response) {
+                if (response.isSuccessful()) {
+                    Log.d("연결 성공", response.message());
+//                            SearchResultModel searchWritingResult = response.body();
+//                            Log.d("검색", searchWritingResult.toString());
+                    dataList = response.body();
+                    dataInfo = dataList.getResult();
+                    if(dataInfo!=null) {
+                        Log.d("전화번호북데이터인포", dataInfo.toString());
+                    }else Log.d("전화번호북데이터인포", "null");
+                    if (response.body().getCode()==200) {
+                        bookmarkAdapter = new bookmarkAdapter(getApplicationContext(), dataInfo);
+                        binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
+                    } else {
+                        dataInfo.clear();
+                        bookmarkAdapter= new bookmarkAdapter(getApplicationContext(), dataInfo);
+                        binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
+                        Log.d("받아온거 없는경우다", dataInfo.toString());
+//                        Toast.makeText(MainActivity.this, "연락처가 비워있습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                } else {
+                    Log.d("ssss", response.message());
+                }
+            }
+            @Override
+            public void onFailure(Call<SearchResultModel> call, Throwable t) {
+                Log.d("ssss", t.getMessage());
+            }
+        });
+
 
         binding.tvMyName.setText(MySharedPreferences.getUserId(MainActivity.this));
-
         binding.person1.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, ProposeCallActivity.class);
             startActivity(intent);
@@ -71,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
         // 아이디로 전화걸기
         binding.btnCon.setOnClickListener(view -> {
             if (!binding.edtId.getText().toString().equals("")) {
-                Intent call = new Intent(MainActivity.this, WaitActivity.class);
-                call.putExtra("counter_id", binding.edtId.getText().toString());
-                startActivity(call);
+                Intent intent = new Intent(MainActivity.this, WaitActivity.class);
+                intent.putExtra("counter_id", binding.edtId.getText().toString());
+                startActivity(intent);
             } else {
                 Toast.makeText(MainActivity.this, "아이디를 입력해주세요", Toast.LENGTH_SHORT).show();
             }
@@ -89,13 +118,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void addCaption(String str) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                list.add(str);
-                adapter.notifyDataSetChanged();
-            }
-        });
-    }
+//    public void addCaption(String str) {
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                list.add(str);
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+//    }
 }

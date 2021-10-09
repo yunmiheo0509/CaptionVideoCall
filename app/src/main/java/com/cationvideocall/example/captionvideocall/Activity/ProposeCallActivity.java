@@ -24,13 +24,21 @@ import retrofit2.Response;
 public class ProposeCallActivity extends AppCompatActivity {
     private ActivityProposeCallBinding binding;
     boolean edit;
-    boolean bookmark;
+    RetrofitService retrofitService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_propose_call);
         // bind activity layout
         binding = DataBindingUtil.setContentView(this, R.layout.activity_propose_call);
+        Intent intent = getIntent();
+        String name = intent.getExtras().getString("name");
+        String counter_id = intent.getExtras().getString("counter_id");
+        boolean bookmark= intent.getExtras().getBoolean("bookmark");
+
+        binding.etCallbookName.setText(name);
+        binding.etCounterid.setText(counter_id);
         edit=false;
 
         binding.btnCall.setOnClickListener(view -> {
@@ -39,8 +47,8 @@ public class ProposeCallActivity extends AppCompatActivity {
             startActivity(call);
         });
         binding.imvBack.setOnClickListener(view -> {
-            Intent intent = new Intent(ProposeCallActivity.this, MainActivity.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(ProposeCallActivity.this, MainActivity.class);
+            startActivity(intent1);
         });
         binding.ibtnEdit.setOnClickListener(view -> {
 
@@ -48,14 +56,41 @@ public class ProposeCallActivity extends AppCompatActivity {
             binding.ibtnEdit.setVisibility(View.INVISIBLE);
             binding.etCounterid.setFocusableInTouchMode(true);
             binding.etCallbookName.setFocusableInTouchMode(true);
+            binding.btnCall.setVisibility(View.INVISIBLE);
             edit=true;
         });
-        binding.imvStar.setOnClickListener(view -> {
-            if(edit&&bookmark){
-                binding.imvStar.setImageResource(R.drawable.star2);
-            }else if(edit&&!bookmark){
-                binding.imvStar.setImageResource(R.drawable.fullstar);
+        binding.btnSaveedit.setOnClickListener(view -> {
+            String et_counter_id = binding.etCounterid.getText().toString();
+            String et_name = binding.etCallbookName.getText().toString();
+            String user_id =MySharedPreferences.getUserId(this);
+
+            if(!counter_id.equals("")&&!name.equals("")){
+                retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+                Call<JsonObject> call = retrofitService.editBook(user_id,et_counter_id, et_name);
+                call.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        if (response.isSuccessful()) {
+                            Log.d("연결 성공", response.message());
+                            JsonObject jsonObject = response.body();
+                            Toast.makeText(ProposeCallActivity.this, "저장되었습니다.", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Log.d("ssss", response.message());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        Log.d("ssss", t.getMessage());
+                    }
+                });
+            }else{
+                Toast.makeText(ProposeCallActivity.this, "아이디 또는 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
             }
+
+            binding.btnCall.setVisibility(View.VISIBLE);
+            binding.btnSaveedit.setVisibility(View.INVISIBLE);
+            binding.ibtnEdit.setVisibility(View.VISIBLE);
         });
 
 
