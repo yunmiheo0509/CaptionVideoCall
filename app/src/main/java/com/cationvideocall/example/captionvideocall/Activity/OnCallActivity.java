@@ -2,26 +2,19 @@ package com.cationvideocall.example.captionvideocall.Activity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.transition.ChangeBounds;
-import android.transition.TransitionManager;
-import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Adapter;
-import android.widget.ImageView;
 
 import com.captionvideocall.example.captionvideocall.databinding.ActivityOnCallBinding;
 import com.cationvideocall.example.captionvideocall.captionCreator.CaptionCreator;
@@ -118,6 +111,16 @@ public class OnCallActivity extends AppCompatActivity {
         // 다른 사용자와 Peer 연결이 완료된 이후 호출되는 콜백입니다.
         remonCall.onComplete(() -> {
             // 영웅 추가 - 캡션을 위한 오디오 녹음 시작
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, 0);
+            }
             captionCreator = new CaptionCreator(handler);
             try {
                 new Thread(new Runnable() {

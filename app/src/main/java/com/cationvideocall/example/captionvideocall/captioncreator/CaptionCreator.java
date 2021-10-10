@@ -1,6 +1,8 @@
 package com.cationvideocall.example.captionvideocall.captionCreator;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
@@ -9,6 +11,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
+
+import androidx.core.app.ActivityCompat;
 
 import com.google.gson.Gson;
 
@@ -32,8 +36,9 @@ public class CaptionCreator {
     byte[] speechData;
     Handler handler;
     boolean isRecording;
-    public CaptionCreator(Handler handler_){
-       this.handler  = handler_;
+
+    public CaptionCreator(Handler handler_) {
+        this.handler = handler_;
     }
 
     // record
@@ -47,13 +52,14 @@ public class CaptionCreator {
                     AudioFormat.CHANNEL_IN_MONO,
                     AudioFormat.ENCODING_PCM_16BIT);
 
+
             @SuppressLint("MissingPermission") AudioRecord audio = new AudioRecord(
                     MediaRecorder.AudioSource.VOICE_RECOGNITION,
                     16000, // sampling frequency
                     AudioFormat.CHANNEL_IN_MONO,
                     AudioFormat.ENCODING_PCM_16BIT,
                     bufferSize);
-            
+
 //            // 노이즈 제거 모듈
 //            NoiseSuppressor.create(audio.getAudioSessionId());
 
