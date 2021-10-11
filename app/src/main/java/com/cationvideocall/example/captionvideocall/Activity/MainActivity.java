@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         //북마크 부분 화면에 나타내기
-        binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
         String user_id = MySharedPreferences.getUserId(this);
 

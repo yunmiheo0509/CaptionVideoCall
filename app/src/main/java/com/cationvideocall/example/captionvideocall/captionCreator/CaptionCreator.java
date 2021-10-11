@@ -68,8 +68,8 @@ public class CaptionCreator {
             } else {
                 short[] inBuffer = new short[bufferSize];
                 audio.startRecording();
-                int total = 0;
-                int level = 0;
+                int total;
+                int level;
                 int cnt = 0;
                 startingIndex = 0;
                 endIndex = 0;
@@ -90,7 +90,6 @@ public class CaptionCreator {
                     }
 
                     total = 0;
-                    level = 0;
 
                     for (int i = 0; i < ret; i++) {
                         total += Math.abs(inBuffer[i]);
@@ -121,7 +120,7 @@ public class CaptionCreator {
                     }
 
                     if (voiceReconize) {
-                        // 목소리가 끝나고 500이하로 떨어진 상태가 40이상 지속된 경우
+                        // 목소리가 끝나고 500이하로 떨어진 상태가 5이상 지속된 경우
                         // 더이상 말하지 않는것으로 간주.. 레벨 체킹 끝냄
                         if (level < 500) {
                             System.out.println("목소리가 끝나고 500이하로 떨어진 상태가 10이상 지속된 경우");

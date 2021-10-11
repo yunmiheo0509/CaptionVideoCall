@@ -5,110 +5,304 @@
     tools:context="com.cationvideocall.example.captionvideocall.Activity.MainActivity">
 
     <LinearLayout
+        android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/back_const"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#0DABFFF7">
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/l_logo"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/bot_navi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/top_navi">
 
-                <TextView
-                    android:id="@+id/tv_whocall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:includeFontPadding="false"
-                    android:text="Caption Video Call"
-                    android:textColor="#14B8A6"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imv_logo"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_whocall"
-                    app:layout_constraintStart_toStartOf="@+id/tv_whocall"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_whocall"
-                    app:srcCompat="@drawable/logo" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/l_call"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
-                app:layout_constraintTop_toBottomOf="@+id/l_logo">
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="아이디로 전화걸기"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/edt_id"
-                    android:layout_width="150sp"
-                    android:layout_height="wrap_content"
-                    android:height="48dp"
-                    android:hint="아이디"
-                    app:layout_constraintStart_toStartOf="@+id/textView6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/l_call"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#05ABFFF7"
+                        android:padding="8dp">
 
-                <Button
-                    android:id="@+id/btn_con"
-                    android:layout_width="64dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
-                    android:background="@drawable/rounded_button"
-                    android:fontFamily="sans-serif"
-                    android:text="연결"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/edt_id"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/edt_id"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="19dp"
+                            android:layout_height="21dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_2"
+                            app:srcCompat="@drawable/fullstar" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/cafe24"
+                            android:text="아이디로 전화걸기"
+                            android:textColor="#000000"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                            app:layout_constraintStart_toEndOf="@+id/imageView3"
+                            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/rounded_layout"
+                            android:padding="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/textView6"
+                            app:layout_constraintTop_toBottomOf="@+id/textView6"
+                            app:layout_constraintVertical_bias="0.0">
+
+                            <Button
+                                android:id="@+id/btn_con"
+                                android:layout_width="64dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="16dp"
+                                android:background="@drawable/rounded_button"
+                                android:fontFamily="@font/cafe24"
+                                android:text="연결"
+                                android:textColor="#FFFFFF"
+                                android:textSize="18sp"
+                                android:textStyle="normal"
+                                app:layout_constraintBottom_toBottomOf="@+id/edt_id"
+                                app:layout_constraintStart_toEndOf="@+id/edt_id"
+                                app:layout_constraintTop_toTopOf="@+id/edt_id" />
+
+                            <EditText
+                                android:id="@+id/edt_id"
+                                android:layout_width="150sp"
+                                android:layout_height="wrap_content"
+                                android:height="48dp"
+                                android:hint="아이디"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/l_bookmark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:background="#05ABFFF7">
+
+                        <TextView
+                            android:id="@+id/tv_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/cafe24"
+                            android:text="주요 연락처"
+                            android:textColor="#000000"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                            app:layout_constraintStart_toEndOf="@+id/imageView4"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="19dp"
+                            android:layout_height="21dp"
+                            android:layout_marginStart="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/fullstar" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerview_person"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="32dp"
+                            android:background="@drawable/rounded_layout"
+                            android:padding="8dp"
+                            android:scrollbarFadeDuration="0"
+                            android:scrollbars="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/tv_2"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_2">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/l_recent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#05ABFFF7"
+                        android:padding="8dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="32dp"
+                            android:background="@drawable/rounded_layout"
+                            android:paddingBottom="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/textView"
+                            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                            <ImageView
+                                android:id="@+id/person2"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:background="@drawable/rounded_image_view_stride"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/personbtn" />
+
+                            <ImageView
+                                android:id="@+id/person1"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:background="@drawable/rounded_image_view_stride"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/person2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/personbtn" />
+
+                            <TextView
+                                android:id="@+id/tv_name3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/cafe24"
+                                android:text="김영웅"
+                                android:textColor="#000000"
+                                android:textStyle="normal"
+                                app:layout_constraintEnd_toEndOf="@+id/person3"
+                                app:layout_constraintStart_toStartOf="@+id/person3"
+                                app:layout_constraintTop_toBottomOf="@+id/person3" />
+
+                            <ImageView
+                                android:id="@+id/person3"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:background="@drawable/rounded_image_view_stride"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/person2"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/personbtn" />
+
+                            <TextView
+                                android:id="@+id/tv_name2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/cafe24"
+                                android:text="둘째딸"
+                                android:textColor="#000000"
+                                android:textStyle="normal"
+                                app:layout_constraintEnd_toEndOf="@+id/person2"
+                                app:layout_constraintStart_toStartOf="@+id/person2"
+                                app:layout_constraintTop_toBottomOf="@+id/person2" />
+
+                            <TextView
+                                android:id="@+id/tv_name1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/cafe24"
+                                android:text="막내 아들"
+                                android:textColor="#000000"
+                                android:textStyle="normal"
+                                app:layout_constraintEnd_toEndOf="@+id/person1"
+                                app:layout_constraintStart_toStartOf="@+id/person1"
+                                app:layout_constraintTop_toBottomOf="@+id/person1" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="19dp"
+                            android:layout_height="21dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/textView"
+                            app:srcCompat="@drawable/hearticon" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/cafe24"
+                            android:text="최근 통화 상대"
+                            android:textColor="#000000"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toEndOf="@+id/imageView5"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </ScrollView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/top_navi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_whocall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/cafe24"
+                    android:includeFontPadding="false"
+                    android:text="캡숑콜"
+                    android:textColor="#14B8A6"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_my_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
                     android:text="이름"
                     android:textColor="#4E4C4C"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_whocall"
+                    app:layout_constraintStart_toEndOf="@+id/tv_whocall" />
 
                 <TextView
                     android:id="@+id/tv_hi"
@@ -127,161 +321,23 @@
                     android:id="@+id/imv_logout"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/logout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/l_bookmark"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
-
-                <TextView
-                    android:id="@+id/tv_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="주요 연락처"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/imageView4"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="19dp"
-                    android:layout_height="21dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_2"
-                    app:srcCompat="@drawable/fullstar" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_person"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:scrollbarFadeDuration="0"
-                    android:scrollbars="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_2">
-
-                </androidx.recyclerview.widget.RecyclerView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/l_call">
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="19dp"
-                    android:layout_height="21dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView"
-                    app:srcCompat="@drawable/hearticon" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="최근 통화 상대"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/imageView5"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/person1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="40dp"
-                    app:layout_constraintEnd_toStartOf="@+id/person2"
-                    app:layout_constraintTop_toTopOf="@+id/person2"
-                    app:srcCompat="@drawable/personbtn" />
-
-                <TextView
-                    android:id="@+id/tv_name2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="둘째딸"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/person3"
-                    app:layout_constraintStart_toEndOf="@+id/person1"
-                    app:layout_constraintTop_toBottomOf="@+id/person2" />
-
-                <TextView
-                    android:id="@+id/tv_name3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="김영웅"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/person3"
-                    app:layout_constraintStart_toStartOf="@+id/person3"
-                    app:layout_constraintTop_toBottomOf="@+id/person3" />
-
-                <ImageView
-                    android:id="@+id/person3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/person2"
-                    app:srcCompat="@drawable/personbtn" />
-
-                <ImageView
-                    android:id="@+id/person2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="40dp"
-                    app:layout_constraintEnd_toStartOf="@+id/person3"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
-                    app:srcCompat="@drawable/personbtn" />
-
-                <TextView
-                    android:id="@+id/tv_name1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="9dp"
-                    android:text="막내 아들"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/person1"
-                    app:layout_constraintStart_toStartOf="@+id/person1"
-                    app:layout_constraintTop_toBottomOf="@+id/person1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
+                android:id="@+id/bot_navi"
                 android:layout_width="413dp"
                 android:layout_height="65dp"
                 android:layout_alignParentBottom="true"
+                android:background="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -291,6 +347,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_image_view_stride"
+                    android:padding="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -301,6 +359,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_image_view_stride"
+                    android:padding="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imv_addcounter"
                     app:layout_constraintTop_toTopOf="parent"
@@ -310,9 +370,11 @@
                     android:id="@+id/tv_plusphone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/cafe24"
                     android:text="연락처 추가"
                     android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imv_addcounter"
                     app:layout_constraintStart_toStartOf="@+id/imv_addcounter"
                     app:layout_constraintTop_toBottomOf="@+id/imv_addcounter" />
@@ -321,9 +383,11 @@
                     android:id="@+id/tv_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/cafe24"
                     android:text="마이페이지"
                     android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageView9"
                     app:layout_constraintStart_toStartOf="@+id/imageView9"
                     app:layout_constraintTop_toBottomOf="@+id/imageView9" />
@@ -332,9 +396,11 @@
                     android:id="@+id/tv_phonebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/cafe24"
                     android:text="연락처"
                     android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/iv_callbook"
                     app:layout_constraintStart_toStartOf="@+id/iv_callbook"
                     app:layout_constraintTop_toBottomOf="@+id/iv_callbook" />
@@ -344,6 +410,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_image_view_stride"
+                    android:padding="5dp"
                     app:layout_constraintEnd_toStartOf="@+id/imv_addcounter"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -351,6 +419,5 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </LinearLayout>
 </layout>
