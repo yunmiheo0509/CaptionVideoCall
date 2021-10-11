@@ -79,7 +79,7 @@ public class callbookAdapter extends RecyclerView.Adapter<callbookAdapter.ItemVi
         private TextView name;
         private TextView counter_id;
         private ImageButton bookmark;
-
+        boolean setbookmark;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -99,12 +99,15 @@ public class callbookAdapter extends RecyclerView.Adapter<callbookAdapter.ItemVi
                 v.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             });
             bookmark.setOnClickListener(view -> {
-                boolean setbookmark;
+
                 int position = getAdapterPosition();
+
                 if (dataList.get(position).getBookmark()) {
                     setbookmark = false;
+                    dataList.get(position).setBookmark(false);
                 } else {
                     setbookmark = true;
+                    dataList.get(position).setBookmark(true);
                 }
                 String user_id = MySharedPreferences.getUserId(c);
                 RetrofitService retrofitService;
@@ -117,11 +120,14 @@ public class callbookAdapter extends RecyclerView.Adapter<callbookAdapter.ItemVi
                             Log.d("연결 성공", response.message());
                             JsonObject jsonObject = response.body();
                             String code = jsonObject.get("code").toString();
+
                             if (code.equals("200")) {
                                 if (setbookmark) {
                                     bookmark.setImageResource(R.drawable.full_star);
+
                                 } else {
                                     bookmark.setImageResource(R.drawable.star2);
+
                                 }
                             }
                         } else {
@@ -140,4 +146,5 @@ public class callbookAdapter extends RecyclerView.Adapter<callbookAdapter.ItemVi
             });
         }
     }
+
 }

@@ -28,7 +28,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-
     bookmarkAdapter bookmarkAdapter;
     RetrofitService retrofitService;
     private List<CallBookListModel> dataInfo;
@@ -42,42 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         //북마크 부분 화면에 나타내기
         binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
-        String user_id = MySharedPreferences.getUserId(this);
-
-        Call<SearchResultModel> call = retrofitService.getBookMark(user_id);
-        call.enqueue(new Callback<SearchResultModel>() {
-            @Override
-            public void onResponse(Call<SearchResultModel> call, Response<SearchResultModel> response) {
-                if (response.isSuccessful()) {
-                    Log.d("연결 성공", response.message());
-//                            SearchResultModel searchWritingResult = response.body();
-//                            Log.d("검색", searchWritingResult.toString());
-                    dataList = response.body();
-                    dataInfo = dataList.getResult();
-                    if(dataInfo!=null) {
-                        Log.d("전화번호북데이터인포", dataInfo.toString());
-                    }else Log.d("전화번호북데이터인포", "null");
-                    if (response.body().getCode()==200) {
-                        bookmarkAdapter = new bookmarkAdapter(getApplicationContext(), dataInfo);
-                        binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
-                    } else {
-                        dataInfo.clear();
-                        bookmarkAdapter= new bookmarkAdapter(getApplicationContext(), dataInfo);
-                        binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
-                        Log.d("받아온거 없는경우다", dataInfo.toString());
-//                        Toast.makeText(MainActivity.this, "연락처가 비워있습니다.", Toast.LENGTH_SHORT).show();
-                        }
-                } else {
-
-                    Log.d("ssss", response.message());
-                }
-            }
-            @Override
-            public void onFailure(Call<SearchResultModel> call, Throwable t) {
-                Log.d("ssss", t.getMessage());
-            }
-        });
+        getBookMarked();
 
 
         binding.tvMyName.setText(MySharedPreferences.getUserId(MainActivity.this));
@@ -128,4 +92,48 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getBookMarked();
+    }
+    void getBookMarked(){
+        retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
+        String user_id = MySharedPreferences.getUserId(this);
+
+        Call<SearchResultModel> call = retrofitService.getBookMark(user_id);
+        call.enqueue(new Callback<SearchResultModel>() {
+            @Override
+            public void onResponse(Call<SearchResultModel> call, Response<SearchResultModel> response) {
+                if (response.isSuccessful()) {
+                    Log.d("연결 성공", response.message());
+//                            SearchResultModel searchWritingResult = response.body();
+//                            Log.d("검색", searchWritingResult.toString());
+                    dataList = response.body();
+                    dataInfo = dataList.getResult();
+                    if(dataInfo!=null) {
+                        Log.d("전화번호북데이터인포", dataInfo.toString());
+                    }else Log.d("전화번호북데이터인포", "null");
+                    if (response.body().getCode()==200) {
+                        bookmarkAdapter = new bookmarkAdapter(getApplicationContext(), dataInfo);
+                        binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
+                    } else {
+                        dataInfo.clear();
+                        bookmarkAdapter= new bookmarkAdapter(getApplicationContext(), dataInfo);
+                        binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
+                        Log.d("받아온거 없는경우다", dataInfo.toString());
+//                        Toast.makeText(MainActivity.this, "연락처가 비워있습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+
+                    Log.d("ssss", response.message());
+                }
+            }
+            @Override
+            public void onFailure(Call<SearchResultModel> call, Throwable t) {
+                Log.d("ssss", t.getMessage());
+            }
+        });
+    }
 }
