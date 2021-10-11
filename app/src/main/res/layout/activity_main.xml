@@ -37,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:background="#05ABFFF7"
+                        android:background="#FFFFFF"
                         android:padding="8dp">
 
                         <ImageView
@@ -53,10 +53,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:fontFamily="@font/cafe24"
+                            android:fontFamily="sans-serif"
                             android:text="아이디로 전화걸기"
                             android:textColor="#000000"
-                            android:textStyle="normal"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                             app:layout_constraintStart_toEndOf="@+id/imageView3"
                             app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -93,7 +93,9 @@
                                 android:layout_width="150sp"
                                 android:layout_height="wrap_content"
                                 android:height="48dp"
+                                android:background="#1AD6D6D6"
                                 android:hint="아이디"
+                                android:padding="4dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -106,17 +108,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:background="#05ABFFF7">
+                        android:background="#FFFFFF">
 
                         <TextView
                             android:id="@+id/tv_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:fontFamily="@font/cafe24"
+                            android:fontFamily="sans-serif"
                             android:text="주요 연락처"
                             android:textColor="#000000"
-                            android:textStyle="normal"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                             app:layout_constraintStart_toEndOf="@+id/imageView4"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -153,7 +155,7 @@
                         android:id="@+id/l_recent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#05ABFFF7"
+                        android:background="#FFFFFF"
                         android:padding="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -254,10 +256,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
-                            android:fontFamily="@font/cafe24"
+                            android:fontFamily="sans-serif"
                             android:text="최근 통화 상대"
                             android:textColor="#000000"
-                            android:textStyle="normal"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toEndOf="@+id/imageView5"
                             app:layout_constraintTop_toTopOf="parent" />
 
