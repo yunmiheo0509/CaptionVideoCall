@@ -153,17 +153,23 @@
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="@+id/tv_2"
                             app:layout_constraintTop_toBottomOf="@+id/tv_2">
-                            <TextView
-                                android:id="@+id/tv_nosearchresult"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:paddingVertical="20dp"
-                                android:text="즐겨찾는 친구를 등록해주세요!"
-                                android:textSize="18dp"
-                                android:visibility="gone" />
-
                         </androidx.recyclerview.widget.RecyclerView>
+
+                        <TextView
+                            android:id="@+id/tv_nosearchresult"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="32dp"
+                            android:gravity="center"
+                            android:paddingVertical="20dp"
+                            android:text="즐겨찾는 친구를 등록해주세요!"
+                            android:textSize="18dp"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_2" />
+
+
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

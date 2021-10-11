@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CaptionVideoCall</string>
+    <string name="app_name">캡숑콜</string>
 
     <!-- permission check -->
     <string name="permission_info_dlg_title">Request Permission</string>

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.captionvideocall.example.captionvideocall.R;
@@ -33,16 +34,19 @@ public class MainActivity extends AppCompatActivity {
     RetrofitService retrofitService;
     private List<CallBookListModel> dataInfo;
     private SearchResultModel dataList;
-
+    TextView textView;
+    boolean isCheck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
+        textView = binding.tvNosearchresult;
         //북마크 부분 화면에 나타내기
         binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        getBookMarked();
+        if(getBookMarked()){
+            textView.setVisibility(View.GONE);
+        }else textView.setVisibility(View.VISIBLE);
 
 
         binding.tvMyName.setText(MySharedPreferences.getUserId(MainActivity.this));
@@ -99,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         getBookMarked();
     }
-    void getBookMarked(){
+    boolean getBookMarked(){
+        isCheck = false;
         retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
         String user_id = MySharedPreferences.getUserId(this);
 
@@ -119,16 +124,14 @@ public class MainActivity extends AppCompatActivity {
                     if (response.body().getCode()==200) {
                         bookmarkAdapter = new bookmarkAdapter(getApplicationContext(), dataInfo);
                         binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
-                        binding.tvNosearchresult.setVisibility(View.GONE);
+                        isCheck = true;
                     } else {
                         dataInfo.clear();
                         bookmarkAdapter= new bookmarkAdapter(getApplicationContext(), dataInfo);
                         binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
                         Log.d("받아온거 없는경우다", dataInfo.toString());
-                        binding.tvNosearchresult.setVisibility(View.VISIBLE);
                     }
                 } else {
-
                     Log.d("ssss", response.message());
                 }
             }
@@ -137,5 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("ssss", t.getMessage());
             }
         });
+        return isCheck;
     }
 }
