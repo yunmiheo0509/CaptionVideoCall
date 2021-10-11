@@ -62,8 +62,8 @@ public class SignupActivity extends AppCompatActivity {
                         JsonObject jsonObject = response.body();
                         Log.d("회원가입성공:", jsonObject.toString());
                         Toast.makeText(SignupActivity.this, "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+//                        startActivity(intent);
                         finish();
                     } else {
                         Toast.makeText(SignupActivity.this, "아이디와 비밀번호를 확인해주세요"
