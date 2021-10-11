@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.captionvideocall.example.captionvideocall.databinding.ActivityLoginBinding;
 import com.cationvideocall.example.captionvideocall.MySharedPreferences;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,8 +15,6 @@ import com.google.gson.JsonObject;
 import com.captionvideocall.example.captionvideocall.R;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitService;
-import com.captionvideocall.example.captionvideocall.databinding.ActivityLoginBinding;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;

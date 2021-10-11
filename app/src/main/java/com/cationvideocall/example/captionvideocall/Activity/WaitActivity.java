@@ -33,7 +33,10 @@ public class WaitActivity extends AppCompatActivity {
 
         Intent getCounter = getIntent();
         String counter_id=getCounter.getExtras().getString("counter_id");
+        String name=getCounter.getExtras().getString("name");
 
+        binding.tvWhocall.setText(name);
+        binding.tvCallid.setText(counter_id);
         retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
 //        //테스트용으로 kk직접 할당
