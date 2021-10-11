@@ -35,19 +35,25 @@ public class MainActivity extends AppCompatActivity {
     private List<CallBookListModel> dataInfo;
     private SearchResultModel dataList;
     TextView textView;
-    boolean isCheck;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         textView = binding.tvNosearchresult;
+
         //북마크 부분 화면에 나타내기
         binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        if(getBookMarked()){
-            textView.setVisibility(View.GONE);
-        }else textView.setVisibility(View.VISIBLE);
+        getBookMarked();
 
+        try {
+            bookmarkAdapter.getItemId(0);
+            textView.setVisibility(View.VISIBLE);
+        } catch (Exception e) {
+            textView.setVisibility(View.GONE);
+            binding.invalidateAll();
+        }
 
         binding.tvMyName.setText(MySharedPreferences.getUserId(MainActivity.this));
         binding.person1.setOnClickListener(view -> {
@@ -88,23 +94,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    public void addCaption(String str) {
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                list.add(str);
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-//    }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         getBookMarked();
     }
-    boolean getBookMarked(){
-        isCheck = false;
+
+    void getBookMarked() {
         retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
         String user_id = MySharedPreferences.getUserId(this);
 
@@ -118,16 +115,17 @@ public class MainActivity extends AppCompatActivity {
 //                            Log.d("검색", searchWritingResult.toString());
                     dataList = response.body();
                     dataInfo = dataList.getResult();
-                    if(dataInfo!=null) {
+
+                    if (dataInfo != null) {
                         Log.d("전화번호북데이터인포", dataInfo.toString());
-                    }else Log.d("전화번호북데이터인포", "null");
-                    if (response.body().getCode()==200) {
+                    } else Log.d("전화번호북데이터인포", "null");
+                    if (response.body().getCode() == 200) {
                         bookmarkAdapter = new bookmarkAdapter(getApplicationContext(), dataInfo);
                         binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
-                        isCheck = true;
+
                     } else {
                         dataInfo.clear();
-                        bookmarkAdapter= new bookmarkAdapter(getApplicationContext(), dataInfo);
+                        bookmarkAdapter = new bookmarkAdapter(getApplicationContext(), dataInfo);
                         binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
                         Log.d("받아온거 없는경우다", dataInfo.toString());
                     }
@@ -135,11 +133,11 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("ssss", response.message());
                 }
             }
+
             @Override
             public void onFailure(Call<SearchResultModel> call, Throwable t) {
                 Log.d("ssss", t.getMessage());
             }
         });
-        return isCheck;
     }
 }
