@@ -46,7 +46,7 @@
             android:layout_marginRight="40dp"
             android:background="@drawable/rounded_text_view"
             android:ems="10"
-            android:fontFamily="@font/abel"
+            android:fontFamily="sans-serif"
             android:hint="아이디"
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
