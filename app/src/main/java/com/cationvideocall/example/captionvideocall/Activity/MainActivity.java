@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.captionvideocall.example.captionvideocall.R;
@@ -118,12 +119,13 @@ public class MainActivity extends AppCompatActivity {
                     if (response.body().getCode()==200) {
                         bookmarkAdapter = new bookmarkAdapter(getApplicationContext(), dataInfo);
                         binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
+                        binding.tvNosearchresult.setVisibility(View.GONE);
                     } else {
                         dataInfo.clear();
                         bookmarkAdapter= new bookmarkAdapter(getApplicationContext(), dataInfo);
                         binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
                         Log.d("받아온거 없는경우다", dataInfo.toString());
-//                        Toast.makeText(MainActivity.this, "연락처가 비워있습니다.", Toast.LENGTH_SHORT).show();
+                        binding.tvNosearchresult.setVisibility(View.VISIBLE);
                     }
                 } else {
 
