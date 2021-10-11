@@ -13,7 +13,6 @@
             android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:focusableInTouchMode="false"
             android:hint="아이디"
             android:minHeight="48dp"
             android:textSize="32sp"
