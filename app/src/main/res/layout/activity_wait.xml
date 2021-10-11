@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="104dp"
             android:includeFontPadding="false"
-            android:text="막내 아들"
+            android:text="상대방"
             android:textColor="#000000"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -53,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_whocall"
-            tools:text="Herok97" />
+            tools:text="상대방 아이디" />
 
         <ImageView
             android:id="@+id/imageView10"
