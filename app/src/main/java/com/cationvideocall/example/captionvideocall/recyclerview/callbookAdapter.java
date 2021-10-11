@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.captionvideocall.example.captionvideocall.R;
-import com.cationvideocall.example.captionvideocall.Activity.CallBookActivity;
 import com.cationvideocall.example.captionvideocall.Activity.ProposeCallActivity;
 import com.cationvideocall.example.captionvideocall.MySharedPreferences;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
@@ -56,7 +55,7 @@ public class callbookAdapter extends RecyclerView.Adapter<callbookAdapter.ItemVi
         holder.counter_id.setText(dataList.get(position).getCounterId());
         holder.name.setText(dataList.get(position).getName());
         if (dataList.get(position).getBookmark()) {
-            holder.bookmark.setImageResource(R.drawable.fullstar);
+            holder.bookmark.setImageResource(R.drawable.full_star);
         } else {
             holder.bookmark.setImageResource(R.drawable.star2);
         }
@@ -120,16 +119,16 @@ public class callbookAdapter extends RecyclerView.Adapter<callbookAdapter.ItemVi
                             String code = jsonObject.get("code").toString();
                             if (code.equals("200")) {
                                 if (setbookmark) {
-                                    bookmark.setImageResource(R.drawable.fullstar);
+                                    bookmark.setImageResource(R.drawable.full_star);
                                 } else {
                                     bookmark.setImageResource(R.drawable.star2);
                                 }
                             }
                         } else {
                             Toast.makeText(c, "북마크 변경 실패.", Toast.LENGTH_SHORT).show();
-
                             Log.d("ssss", response.message());
                         }
+
                     }
 
                     @Override

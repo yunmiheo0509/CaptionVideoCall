@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.captionvideocall.example.captionvideocall.R;
@@ -27,6 +29,8 @@ public class CallBookActivity extends AppCompatActivity {
     private SearchResultModel dataList;
     private callbookAdapter callbookAdapter;
     private RecyclerView recyclerView;
+    Button newCallbook;
+
     RetrofitService retrofitService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class CallBookActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerview_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        newCallbook = findViewById(R.id.btn_add);
+
 
         retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
@@ -74,6 +80,11 @@ public class CallBookActivity extends AppCompatActivity {
             }
         });
 
+        newCallbook.setOnClickListener(view -> {
+            Intent intent = new Intent(CallBookActivity.this, NewCounterActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
     }
 }

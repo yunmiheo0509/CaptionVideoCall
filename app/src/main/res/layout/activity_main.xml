@@ -48,7 +48,7 @@
                             android:layout_marginStart="8dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/tv_2"
-                            app:srcCompat="@drawable/fullstar" />
+                            app:srcCompat="@drawable/full_star"/>
 
                         <TextView
                             android:id="@+id/textView6"
@@ -135,7 +135,7 @@
                             android:layout_marginStart="8dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/fullstar" />
+                            app:srcCompat="@drawable/full_star" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerview_person"
