@@ -44,7 +44,6 @@ public class ProposeCallActivity extends AppCompatActivity {
         binding.btnCall.setOnClickListener(view -> {
             Intent call = new Intent(ProposeCallActivity.this, WaitActivity.class);
             call.putExtra("counter_id", binding.etCounterid.getText().toString());
-            call.putExtra("name", binding.etCallbookName.getText().toString());
             startActivity(call);
         });
         binding.imvBack.setOnClickListener(view -> {

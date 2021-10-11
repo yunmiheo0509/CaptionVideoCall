@@ -29,18 +29,16 @@ public class FirebaseMessagingIDService extends FirebaseMessagingService {
 
             if (info != null && info.equals("propose_call")) {
                 String user_id = remoteMessage.getData().get("user_id");
-                String name = remoteMessage.getData().get("name");
                 String room_num = remoteMessage.getData().get("room_num");
                 Log.d("파이어베이스나온", user_id + room_num);
                 Intent intent = new Intent(this, NotifyCallActivity.class);
                 intent.putExtra("user_id", user_id);
                 intent.putExtra("room_num", room_num);
-                intent.putExtra("name", name);
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 getApplicationContext().startActivity(intent);
-//                Log.d("스타트 액티비티", user_id + room_num);
+                Log.d("스타트 액티비티", user_id + room_num);
             }
             else if (info != null && info.equals("cancel_call")){
                 Log.d("전화 끊겼다는 FCM 받음", "전화 끊겼다는 FCM 받음");
