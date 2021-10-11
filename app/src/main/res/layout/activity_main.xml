@@ -39,7 +39,8 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:background="#FFFFFF"
-                        android:padding="8dp">
+                        android:paddingLeft="8dp"
+                        android:paddingTop="24dp">
 
                         <ImageView
                             android:id="@+id/imageView3"
@@ -64,32 +65,33 @@
                             app:layout_constraintStart_toEndOf="@+id/imageView3"
                             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
+                        <Button
+                            android:id="@+id/btn_con"
+                            android:layout_width="64dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="16dp"
+                            android:background="@drawable/rounded_button"
+                            android:fontFamily="@font/cafe24"
+                            android:text="연결"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
+                            app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+                            app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
+
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:id="@+id/constraintLayout2"
+                            android:layout_width="250sp"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
                             android:background="@drawable/rounded_layout"
-                            android:padding="8dp"
+                            android:padding="4dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/textView6"
                             app:layout_constraintTop_toBottomOf="@+id/textView6"
                             app:layout_constraintVertical_bias="0.0">
-
-                            <Button
-                                android:id="@+id/btn_con"
-                                android:layout_width="64dp"
-                                android:layout_height="30dp"
-                                android:layout_marginStart="16dp"
-                                android:background="@drawable/rounded_button"
-                                android:fontFamily="@font/cafe24"
-                                android:text="연결"
-                                android:textColor="#FFFFFF"
-                                android:textSize="18sp"
-                                android:textStyle="normal"
-                                app:layout_constraintBottom_toBottomOf="@+id/edt_id"
-                                app:layout_constraintStart_toEndOf="@+id/edt_id"
-                                app:layout_constraintTop_toTopOf="@+id/edt_id" />
 
                             <EditText
                                 android:id="@+id/edt_id"
@@ -112,7 +114,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:background="#FFFFFF"
-                        android:padding="8dp">
+                        android:paddingStart="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="24dp"
+                        android:paddingEnd="8dp">
 
                         <TextView
                             android:id="@+id/tv_2"
@@ -280,6 +285,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
+                android:paddingLeft="8dp"
+                android:paddingTop="16dp"
+                android:paddingRight="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

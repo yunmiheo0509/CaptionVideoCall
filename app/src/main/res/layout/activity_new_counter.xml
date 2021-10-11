@@ -8,6 +8,40 @@
         android:layout_height="match_parent"
         tools:context="com.cationvideocall.example.captionvideocall.Activity.NewCounterActivity">
 
+        <EditText
+            android:id="@+id/et_counterid"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:focusableInTouchMode="false"
+            android:hint="아이디"
+            android:minHeight="48dp"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_id"
+            app:layout_constraintStart_toEndOf="@+id/tv_id"
+            app:layout_constraintTop_toTopOf="@+id/tv_id" />
+
+        <TextView
+            android:id="@+id/tv_id3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="이름"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_id"
+            app:layout_constraintTop_toBottomOf="@+id/tv_id" />
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="16dp"
+            android:text="아이디"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
         <ImageView
             android:id="@+id/imv_logo"
             android:layout_width="50dp"
@@ -31,39 +65,16 @@
 
         <EditText
             android:id="@+id/et_callbookName"
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:hint="이름을 입력해주세요"
+            android:hint="이름"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_id3"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-        <TextView
-            android:id="@+id/tv_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:text="아이디"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/et_counterid"
-            app:layout_constraintEnd_toStartOf="@+id/et_counterid"
-            app:layout_constraintTop_toTopOf="@+id/et_counterid" />
-
-        <EditText
-            android:id="@+id/et_counterid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="아이디를 입력해주세요"
-            android:minHeight="48dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/et_callbookName"
-            app:layout_constraintHorizontal_bias="0.545"
-            app:layout_constraintStart_toStartOf="@+id/et_callbookName"
-            app:layout_constraintTop_toBottomOf="@+id/et_callbookName" />
+            app:layout_constraintTop_toTopOf="@+id/tv_id3" />
 
         <Button
             android:id="@+id/btn_save"
