@@ -7,12 +7,12 @@
     android:layout_margin="3dp"
     android:background="@drawable/rounded_listview"
     android:foreground="?attr/selectableItemBackground"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/imv_bookmarkperson"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/white_round10"
         android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,10 +28,10 @@
         android:layout_toEndOf="@+id/imv_bookmarkperson"
         android:fontFamily="@font/cafe24"
         android:textColor="#E6000000"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imv_bookmarkperson"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="막내 아들" />
+        tools:text="저장된 이름" />
 </androidx.constraintlayout.widget.ConstraintLayout>

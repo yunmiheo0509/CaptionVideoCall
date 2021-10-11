@@ -70,7 +70,6 @@ public class NotifyCallActivity extends AppCompatActivity {
         rt.play();
 
 
-        binding.tvWhocall.setText(counter_id);
         binding.imvGetCall.setOnClickListener(view -> {
 
             retrofitService1 = RetrofitHelper.getRetrofit().create(RetrofitService.class);

@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         textView = binding.tvNosearchresult;
 
+
         //북마크 부분 화면에 나타내기
         binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         getBookMarked();
@@ -71,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
             if (!binding.edtId.getText().toString().equals("")) {
                 Intent intent = new Intent(MainActivity.this, WaitActivity.class);
                 intent.putExtra("counter_id", binding.edtId.getText().toString());
+
+                // 아이디로 전화를 걸 경우 이름도 아이디와 같게
+                intent.putExtra("name", binding.edtId.getText().toString());
                 startActivity(intent);
             } else {
                 Toast.makeText(MainActivity.this, "아이디를 입력해주세요", Toast.LENGTH_SHORT).show();
@@ -88,9 +93,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        getBookMarked();
+//    }
+
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onResume() {
+        super.onResume();
         getBookMarked();
     }
 
@@ -109,18 +120,24 @@ public class MainActivity extends AppCompatActivity {
                     dataList = response.body();
                     dataInfo = dataList.getResult();
 
+
+
                     if (dataInfo != null) {
                         Log.d("전화번호북데이터인포", dataInfo.toString());
                     } else Log.d("전화번호북데이터인포", "null");
+
                     if (response.body().getCode() == 200) {
                         bookmarkAdapter = new bookmarkAdapter(getApplicationContext(), dataInfo);
                         binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
-
+                        textView.setVisibility(View.INVISIBLE);
+                        System.out.println("택스트뷰 사라졌다");
                     } else {
                         dataInfo.clear();
                         bookmarkAdapter = new bookmarkAdapter(getApplicationContext(), dataInfo);
                         binding.recyclerviewPerson.setAdapter(bookmarkAdapter);
                         Log.d("받아온거 없는경우다", dataInfo.toString());
+                        textView.setVisibility(View.VISIBLE);
+                        System.out.println("택스트뷰 생겼다");
                     }
                 } else {
                     Log.d("ssss", response.message());

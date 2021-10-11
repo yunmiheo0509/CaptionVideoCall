@@ -47,6 +47,7 @@ public class ProposeCallActivity extends AppCompatActivity {
             call.putExtra("name", binding.etCallbookName.getText().toString());
             startActivity(call);
         });
+
         binding.imvBack.setOnClickListener(view -> {
             Intent intent1 = new Intent(ProposeCallActivity.this, MainActivity.class);
             startActivity(intent1);

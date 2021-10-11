@@ -14,6 +14,7 @@ import android.util.Base64;
 
 import androidx.core.app.ActivityCompat;
 
+import com.cationvideocall.example.captionvideocall.Activity.MainActivity;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -36,9 +37,24 @@ public class CaptionCreator {
     byte[] speechData;
     Handler handler;
     boolean isRecording;
+    AudioRecord audio;
+    int bufferSize;
 
+    @SuppressLint("MissingPermission")
     public CaptionCreator(Handler handler_) {
         this.handler = handler_;
+
+        bufferSize = AudioRecord.getMinBufferSize(
+                16000, // sampling frequency
+                AudioFormat.CHANNEL_IN_MONO,
+                AudioFormat.ENCODING_PCM_16BIT);
+
+        audio = new AudioRecord(
+                MediaRecorder.AudioSource.VOICE_RECOGNITION,
+                16000, // sampling frequency
+                AudioFormat.CHANNEL_IN_MONO,
+                AudioFormat.ENCODING_PCM_16BIT,
+                bufferSize);
     }
 
     // record
@@ -47,23 +63,8 @@ public class CaptionCreator {
         isRecording = true;
         speechData = new byte[16000 * 60 * 2];
         try {
-            int bufferSize = AudioRecord.getMinBufferSize(
-                    16000, // sampling frequency
-                    AudioFormat.CHANNEL_IN_MONO,
-                    AudioFormat.ENCODING_PCM_16BIT);
-
-
-            @SuppressLint("MissingPermission") AudioRecord audio = new AudioRecord(
-                    MediaRecorder.AudioSource.VOICE_RECOGNITION,
-                    16000, // sampling frequency
-                    AudioFormat.CHANNEL_IN_MONO,
-                    AudioFormat.ENCODING_PCM_16BIT,
-                    bufferSize);
-
-//            // 노이즈 제거 모듈
-//            NoiseSuppressor.create(audio.getAudioSessionId());
-
-            if (audio.getState() != AudioRecord.STATE_INITIALIZED) {
+//            if (audio.getState() != AudioRecord.STATE_INITIALIZED) {
+            if (false) {
                 throw new RuntimeException("ERROR: Failed to initialize audio device. Allow app to access microphone");
             } else {
                 short[] inBuffer = new short[bufferSize];
@@ -113,7 +114,7 @@ public class CaptionCreator {
                             System.out.println("level 값이 처음으로 1000 값을 넘은시점으로부터 15 만큼 이전부터 플레이 시점 설정");
                             // level 값이 처음으로 1000 값을 넘은시점으로부터 15 만큼 이전부터 플레이 시점 설정
                             // 시작하는 목소리가 끊겨 들리지 않게 하기 위하여 -15
-                            startingIndex -= 45;
+                            startingIndex -= 60;
                             if (startingIndex < 0)
                                 startingIndex = 0;
                         }
