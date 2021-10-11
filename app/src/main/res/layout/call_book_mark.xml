@@ -27,7 +27,7 @@
         android:layout_marginStart="32dp"
         android:layout_toEndOf="@+id/imv_bookmarkperson"
         android:fontFamily="@font/cafe24"
-        android:textColor="#000000"
+        android:textColor="#E6000000"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -30,15 +30,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imv_addcounter" />
+
         <EditText
             android:id="@+id/et_id"
             android:layout_width="match_parent"
             android:layout_height="50sp"
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="32dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/rounded_text_view"
             android:ems="10"
-            android:fontFamily="@font/abel"
+            android:fontFamily="sans-serif"
             android:hint="아이디"
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
@@ -47,11 +49,9 @@
             android:textColorHint="#808EA1"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.308" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_whocall" />
         <EditText
             android:id="@+id/et_pw"
             android:layout_width="match_parent"
@@ -81,6 +81,7 @@
             android:layout_marginTop="44dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/rounded_button"
+            android:foreground="?attr/selectableItemBackground"
             android:fontFamily="sans-serif"
             android:text="회원가입"
             android:textColor="#FFFFFF"

@@ -18,6 +18,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_whocall"
             app:layout_constraintStart_toStartOf="@+id/tv_whocall"
+            android:foreground="?attr/selectableItemBackground"
             app:srcCompat="@drawable/redcall"
             tools:srcCompat="@drawable/redcall" />
 

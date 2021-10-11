@@ -7,47 +7,41 @@
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_layout.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_text_view.xml" value="0.1984375" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/setcorner.xml" value="0.1984375" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_call_book.xml" value="0.2520833333333333" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_new_counter.xml" value="0.2520833333333333" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_notify_call.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_on_call.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_propose_call.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_signup.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_signup.xml" value="0.33" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_splash.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_wait.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/call_book_mark.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/callbook_list.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/01079/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/item_list.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_button.xml" value="0.2515625" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/setcorner.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_call_book.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_login.xml" value="0.2546875" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_notify_call.xml" value="0.24456521739130435" />
+        <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_notify_call.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_on_call.xml" value="0.2" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_propose_call.xml" value="0.264" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_signup.xml" value="0.22735507246376813" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_splash.xml" value="0.23541666666666666" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_test.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_wait.xml" value="0.2" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/call_book_mark.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/callbook_list.xml" value="0.264" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/item_list.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/list_callbook.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/dbsal/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1814814814814815" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_button.xml" value="0.11927083333333334" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_image_view_stride.xml" value="0.11927083333333334" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_layout.xml" value="0.11927083333333334" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_listview.xml" value="0.1796875" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/drawable/rounded_text_view.xml" value="0.11927083333333334" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/font/abel.xml" value="0.1" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/font/cafe24surround.xml" value="0.1" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_login.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_new_counter.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_notify_call.xml" value="0.22" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_on_call.xml" value="0.15260416666666668" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_propose_call.xml" value="0.30520833333333336" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_signup.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_splash.xml" value="0.12" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_wait.xml" value="0.22" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/call_book_mark.xml" value="0.5" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/callbook_list.xml" value="0.5" />
-        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/item_list.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/duddn/AndroidStudioProjects/CaptionVideoCall/app/src/main/res/layout/activity_notify_call.xml" value="0.17916666666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

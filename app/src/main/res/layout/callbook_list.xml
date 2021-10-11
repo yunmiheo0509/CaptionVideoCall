@@ -5,6 +5,7 @@
     android:id="@+id/item_view"
     android:layout_width="wrap_content"
     android:layout_height="80dp"
+    android:foreground="?attr/selectableItemBackground"
     android:layout_centerVertical="true">
 
     <ImageView
@@ -32,6 +33,7 @@
         android:layout_marginBottom="29dp"
         android:layout_toEndOf="@+id/imageView13"
         android:fontFamily="@font/cafe24"
+        android:textColor="#E6000000"
         android:textSize="20sp"
         android:textStyle="normal"
         tools:text="막내 아들" />
