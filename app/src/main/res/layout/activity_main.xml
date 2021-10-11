@@ -45,6 +45,7 @@
                             android:id="@+id/imageView3"
                             android:layout_width="19dp"
                             android:layout_height="21dp"
+                            android:layout_marginStart="8dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/tv_2"
                             app:srcCompat="@drawable/fullstar" />
@@ -110,7 +111,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:background="#FFFFFF">
+                        android:background="#FFFFFF"
+                        android:padding="8dp">
 
                         <TextView
                             android:id="@+id/tv_2"
@@ -341,10 +343,11 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/bot_navi"
-                android:layout_width="413dp"
-                android:layout_height="65dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
                 android:layout_alignParentBottom="true"
                 android:background="#FFFFFF"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -353,7 +356,6 @@
                     android:id="@+id/imv_addcounter"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
                     android:background="@drawable/rounded_image_view_stride"
                     android:padding="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -365,7 +367,6 @@
                     android:id="@+id/iv_callbook"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
                     android:background="@drawable/rounded_image_view_stride"
                     android:padding="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -377,6 +378,7 @@
                     android:id="@+id/tv_plusphone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/cafe24"
                     android:text="연락처 추가"
                     android:textSize="12sp"
@@ -390,6 +392,7 @@
                     android:id="@+id/tv_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/cafe24"
                     android:text="마이페이지"
                     android:textSize="12sp"
@@ -403,6 +406,7 @@
                     android:id="@+id/tv_phonebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/cafe24"
                     android:text="연락처"
                     android:textSize="12sp"
@@ -416,7 +420,6 @@
                     android:id="@+id/imageView9"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
                     android:background="@drawable/rounded_image_view_stride"
                     android:padding="5dp"
                     app:layout_constraintEnd_toStartOf="@+id/imv_addcounter"
