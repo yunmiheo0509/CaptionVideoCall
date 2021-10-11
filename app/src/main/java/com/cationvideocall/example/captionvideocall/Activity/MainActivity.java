@@ -47,13 +47,6 @@ public class MainActivity extends AppCompatActivity {
         binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         getBookMarked();
 
-        try {
-            bookmarkAdapter.getItemId(0);
-            textView.setVisibility(View.VISIBLE);
-        } catch (Exception e) {
-            textView.setVisibility(View.GONE);
-            binding.invalidateAll();
-        }
 
         binding.tvMyName.setText(MySharedPreferences.getUserId(MainActivity.this));
         binding.person1.setOnClickListener(view -> {
