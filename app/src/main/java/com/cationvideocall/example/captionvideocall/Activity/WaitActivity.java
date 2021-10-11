@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,18 +28,20 @@ public class WaitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wait);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_wait);
-
         String user_id = MySharedPreferences.getUserId(this);
         Log.d("로그인한 사용자 아이디: ", user_id);
 
         Intent getCounter = getIntent();
         String counter_id=getCounter.getExtras().getString("counter_id");
+        String name = getCounter.getExtras().getString("name");
+
+        binding.tvWhocall.setText(name);
+        binding.tvCallid.setText(counter_id);
 
         retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
 
 //        //테스트용으로 kk직접 할당
 //        String counter_id="test";
-
         Log.d("상대방 아이디", counter_id);
         Call<JsonObject> call = retrofitService.getPropose(user_id, counter_id);
 
@@ -116,4 +119,5 @@ public class WaitActivity extends AppCompatActivity {
             finish();
         });
     }
+
 }

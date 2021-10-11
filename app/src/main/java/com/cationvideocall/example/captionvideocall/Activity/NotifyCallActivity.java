@@ -52,7 +52,10 @@ public class NotifyCallActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String counter_id = intent.getExtras().getString("user_id");
         String room_num = intent.getExtras().getString("room_num");
+        String name = intent.getExtras().getString("name");
 
+        binding.tvWhocall.setText(name);
+        binding.tvCallid2.setText(counter_id);
         // 애니매이션
         @SuppressLint("ResourceType") Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.ani_calling);
         binding.imvGetCall.startAnimation(animation);

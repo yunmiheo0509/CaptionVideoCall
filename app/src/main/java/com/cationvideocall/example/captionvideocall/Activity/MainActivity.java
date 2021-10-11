@@ -3,7 +3,6 @@ package com.cationvideocall.example.captionvideocall.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitHelper;
 import com.cationvideocall.example.captionvideocall.Retrofit.RetrofitService;
 import com.cationvideocall.example.captionvideocall.recyclerview.SearchResultModel;
 import com.cationvideocall.example.captionvideocall.recyclerview.bookmarkAdapter;
-import com.cationvideocall.example.captionvideocall.recyclerview.callbookAdapter;
 
 import java.util.List;
 
@@ -39,11 +37,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        String user_id = MySharedPreferences.getUserId(this);
 
         //북마크 부분 화면에 나타내기
         binding.recyclerviewPerson.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         retrofitService = RetrofitHelper.getRetrofit().create(RetrofitService.class);
-        String user_id = MySharedPreferences.getUserId(this);
+
 
         Call<SearchResultModel> call = retrofitService.getBookMark(user_id);
         call.enqueue(new Callback<SearchResultModel>() {
