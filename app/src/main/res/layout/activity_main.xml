@@ -95,10 +95,9 @@
 
                             <EditText
                                 android:id="@+id/edt_id"
-                                android:layout_width="150sp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:height="48dp"
-                                android:background="#1AD6D6D6"
                                 android:hint="아이디"
                                 android:padding="4dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -145,10 +144,9 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerview_person"
                             android:layout_width="0dp"
-                            android:layout_height="200dp"
+                            android:layout_height="300dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="32dp"
-                            android:background="@drawable/rounded_layout"
                             android:padding="8dp"
                             android:scrollbarFadeDuration="0"
                             android:scrollbars="vertical"

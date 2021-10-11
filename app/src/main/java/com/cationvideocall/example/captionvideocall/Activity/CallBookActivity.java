@@ -69,7 +69,7 @@ public class CallBookActivity extends AppCompatActivity {
                         callbookAdapter= new callbookAdapter(getApplicationContext(), dataInfo);
                         recyclerView.setAdapter(callbookAdapter);
                         Log.d("받아온거 없는경우다", dataInfo.toString());
-                        Toast.makeText(CallBookActivity.this, "연락처가 비워있습니다.", Toast.LENGTH_SHORT).show();                    }
+                        Toast.makeText(CallBookActivity.this, "연락처가 비어있습니다.", Toast.LENGTH_SHORT).show();                    }
                 } else {
                     Log.d("ssss", response.message());
                 }
