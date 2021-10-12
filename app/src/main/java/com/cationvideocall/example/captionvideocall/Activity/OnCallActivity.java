@@ -17,6 +17,7 @@ import android.os.Message;
 import android.view.WindowManager;
 
 import com.captionvideocall.example.captionvideocall.databinding.ActivityOnCallBinding;
+import com.cationvideocall.example.captionvideocall.PhItemAnimator;
 import com.cationvideocall.example.captionvideocall.captionCreator.CaptionCreator;
 import com.cationvideocall.example.captionvideocall.recyclerview.SimpleTextAdapter;
 import com.google.android.material.snackbar.Snackbar;
@@ -78,6 +79,18 @@ public class OnCallActivity extends AppCompatActivity {
         adapter = new SimpleTextAdapter(list) ;
         binding.recyclerView.setAdapter(adapter) ;
 
+        // Animation 설정
+
+        /* DefaultItemAnimator
+        DefaultItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setChangeDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        */
+
+        // SimpleItemAnimator
+        PhItemAnimator itemAnimator = new PhItemAnimator(this);
+        binding.recyclerView.setItemAnimator(itemAnimator);
 
         // start Remote-monster
         initRemonCall();
@@ -210,7 +223,10 @@ public class OnCallActivity extends AppCompatActivity {
                         list.add(str) ;
                     }
                     binding.recyclerView.smoothScrollToPosition(binding.recyclerView.getAdapter().getItemCount() - 1);
-                    adapter.notifyDataSetChanged();
+//                    adapter.notifyDataSetChanged();
+                    // List 반영
+                    adapter.notifyItemInserted(list.size());
+//                    adapter.notifyItemInserted();
                 }
             }
         });

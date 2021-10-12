@@ -31,7 +31,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    bookmarkAdapter bookmarkAdapter;
+    public static bookmarkAdapter bookmarkAdapter;
     RetrofitService retrofitService;
     private List<CallBookListModel> dataInfo;
     private SearchResultModel dataList;
@@ -97,6 +97,19 @@ public class MainActivity extends AppCompatActivity {
 //    protected void onRestart() {
 //        super.onRestart();
 //        getBookMarked();
+//    }
+
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        getBookMarked();
+//        try {
+//            bookmarkAdapter.getItemId(0);
+//            textView.setVisibility(View.INVISIBLE);
+//            binding.invalidateAll();
+//        } catch (Exception e) {
+//            textView.setVisibility(View.VISIBLE);
+//        }
 //    }
 
     @Override
