@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
+import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
@@ -165,6 +166,7 @@ public class CaptionCreator {
         Bundle bd = new Bundle();
         bd.putString(MSG_KEY, str);
         msg.setData(bd);
+        Log.d("윤미:recordspeach안에 e!","샌드 메시지 안에임.sendmesag :"+str);
         handler.sendMessage(msg);
     }
 

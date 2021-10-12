@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.captionvideocall.example.captionvideocall.databinding.ActivityOnCallBinding;
@@ -133,6 +134,7 @@ public class OnCallActivity extends AppCompatActivity {
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
                 ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, 0);
+                Log.d("윤미: 녹음시작이다!","start");
             }
             captionCreator = new CaptionCreator(handler);
             try {
