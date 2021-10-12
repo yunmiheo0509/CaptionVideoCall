@@ -5,33 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
-    android:background="@drawable/rounded_listview"
-    android:foreground="?attr/selectableItemBackground"
     android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/imv_bookmarkperson"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/white_round10"
-        android:padding="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profileimg" />
 
-    <TextView
-        android:id="@+id/et_callbookName"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/con2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_toEndOf="@+id/imv_bookmarkperson"
-        android:fontFamily="@font/cafe24"
-        android:textColor="#E6000000"
-        android:textSize="18sp"
-        android:textStyle="normal"
+        android:layout_margin="3dp"
+        android:background="@drawable/rounded_listview"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="10dp"
+        android:outlineProvider="bounds"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imv_bookmarkperson"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="저장된 이름" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imv_bookmarkperson"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/white_round10"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/personbtn" />
+
+        <TextView
+            android:id="@+id/et_callbookName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_toEndOf="@+id/imv_bookmarkperson"
+            android:fontFamily="@font/cafe24"
+            android:textColor="#E6000000"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imv_bookmarkperson"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="저장된 이름" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

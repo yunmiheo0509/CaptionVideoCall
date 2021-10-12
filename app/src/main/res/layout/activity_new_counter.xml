@@ -8,6 +8,20 @@
         android:layout_height="match_parent"
         tools:context="com.cationvideocall.example.captionvideocall.Activity.NewCounterActivity">
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="연착처 추가"
+            android:textColor="#14B8A6"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
             android:id="@+id/et_counterid"
             android:layout_width="200sp"
@@ -35,75 +49,67 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="32dp"
             android:text="아이디"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <ImageView
-            android:id="@+id/imv_logo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
-
-        <ImageView
             android:id="@+id/imageView"
-            android:layout_width="123dp"
-            android:layout_height="108dp"
-            android:layout_marginTop="56dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imv_logo"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
             app:srcCompat="@drawable/profileimg" />
 
         <EditText
             android:id="@+id/et_callbookName"
             android:layout_width="200sp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:hint="이름"
             android:textColor="#000000"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_id3"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/tv_id3"
             app:layout_constraintTop_toTopOf="@+id/tv_id3" />
 
         <Button
             android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="64dp"
             android:background="@drawable/rounded_button"
-            android:text="저장"
             android:fontFamily="sans-serif"
+            android:text="저장"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/et_callbookName" />
 
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="64dp"
             android:background="@drawable/rounded_button"
-            android:text="취소"
             android:fontFamily="sans-serif"
+            android:text="취소"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/et_callbookName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
