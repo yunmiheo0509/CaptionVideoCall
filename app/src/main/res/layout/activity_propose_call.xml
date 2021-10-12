@@ -19,25 +19,13 @@
             app:srcCompat="@drawable/back" />
 
         <ImageView
-            android:id="@+id/imv_logo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
-
-        <ImageView
             android:id="@+id/imageView"
             android:layout_width="123dp"
             android:layout_height="108dp"
-            android:layout_marginTop="56dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imv_logo"
-            app:srcCompat="@drawable/profileimg" />
+            app:srcCompat="@drawable/profileimg"
+            tools:layout_editor_absoluteY="122dp" />
 
         <EditText
             android:id="@+id/et_callbookName"
@@ -104,27 +92,33 @@
             android:id="@+id/btn_saveedit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="#EFFFFD"
-            android:text="수정완료"
+
+            android:background="@drawable/rounded_button"
+            android:fontFamily="sans-serif"
+            android:text="저장"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imv_logo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:foreground="?attr/selectableItemBackground"
             android:id="@+id/ibtn_edit"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:adjustViewBounds="true"
-            android:backgroundTint="#00FFFFFF"
+            android:background="@drawable/rounded_image_view_stride"
+
+            android:foreground="?attr/selectableItemBackground"
             android:padding="5dp"
             android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/editpen" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
