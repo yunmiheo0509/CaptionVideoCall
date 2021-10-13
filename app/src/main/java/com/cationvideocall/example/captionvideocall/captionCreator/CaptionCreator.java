@@ -77,6 +77,19 @@ public class CaptionCreator {
                 endIndex = 0;
                 boolean voiceReconize = false;
 
+                // 초반 소음 측정
+                int init_level = 0;
+//                for (int t = 0; t< 10; t++){
+//                    int ret = audio.read(inBuffer, 0, bufferSize);
+//                    total = 0;
+//                    for (int i = 0; i < ret; i++) {
+//                        total += Math.abs(inBuffer[i]);
+//                    }
+//                    init_level += total / (ret+1);
+//                }
+//                init_level = init_level / 10;
+
+                System.out.println("초기 Level check: " + init_level);
                 while (isRecording) {
                     int ret = audio.read(inBuffer, 0, bufferSize);
 
@@ -103,7 +116,7 @@ public class CaptionCreator {
                     // 2000이 넘는 상태에서 cnt 를 증가시켜 10회 이상 지속되면 목소리가 나는 것으로 간주함
                     // voiceReconize 가 활성화 되면 시작 포인트
                     if (!voiceReconize) {
-                        if (level > 1000) {
+                        if (level > 1000 + init_level) {
                             if (cnt == 0)
                                 startingIndex = lenSpeech;
                             cnt++;
@@ -124,12 +137,12 @@ public class CaptionCreator {
                     if (voiceReconize) {
                         // 목소리가 끝나고 500이하로 떨어진 상태가 5이상 지속된 경우
                         // 더이상 말하지 않는것으로 간주.. 레벨 체킹 끝냄
-                        if (level < 500) {
+                        if (level < 500 + init_level) {
                             System.out.println("목소리가 끝나고 500이하로 떨어진 상태가 10이상 지속된 경우");
                             cnt++;
                         }
                         // 도중에 다시 소리가 커지는 경우 잠시 쉬었다가 계속 말하는 경우이므로 cnt 값은 0
-                        if (level > 1000) {
+                        if (level > 1000 + init_level) {
                             System.out.println("도중에 다시 소리가 커지는 경우 잠시 쉬었다가 계속 말하는 경우이므로 cnt 값은 0");
                             cnt = 0;
                         }
