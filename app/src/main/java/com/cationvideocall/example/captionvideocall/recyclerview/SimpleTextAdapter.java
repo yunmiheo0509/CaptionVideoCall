@@ -1,9 +1,14 @@
 package com.cationvideocall.example.captionvideocall.recyclerview;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +17,6 @@ import com.captionvideocall.example.captionvideocall.R;
 
 import java.util.ArrayList;
 public class SimpleTextAdapter extends RecyclerView.Adapter<SimpleTextAdapter.ViewHolder> {
-
     private ArrayList<String> mData = null ;
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.

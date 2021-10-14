@@ -40,10 +40,10 @@ public class OnCallActivity extends AppCompatActivity {
     // Caption
     CaptionCreator captionCreator;
     private static final String MSG_KEY = "status";
+
     private final Handler handler = new Handler() {
         @Override
         public synchronized void handleMessage(Message msg) {
-
             Bundle bd = msg.getData();
             String v = bd.getString(MSG_KEY);
             if (remonCall != null && !v.isEmpty()) {
@@ -76,22 +76,14 @@ public class OnCallActivity extends AppCompatActivity {
         });
 
         list = new ArrayList<>();
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
-        adapter = new SimpleTextAdapter(list) ;
-        binding.recyclerView.setAdapter(adapter) ;
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new SimpleTextAdapter(list);
+        binding.recyclerView.setAdapter(adapter);
 
         // Animation 설정
-
-        /* DefaultItemAnimator
-        DefaultItemAnimator itemAnimator = new DefaultItemAnimator();
-        itemAnimator.setAddDuration(1000);
-        itemAnimator.setChangeDuration(1000);
-        itemAnimator.setRemoveDuration(1000);
-        */
-
         // SimpleItemAnimator
-        PhItemAnimator itemAnimator = new PhItemAnimator(this);
-        binding.recyclerView.setItemAnimator(itemAnimator);
+//        PhItemAnimator itemAnimator = new PhItemAnimator(this);
+//        binding.recyclerView.setItemAnimator(itemAnimator);
 
         // start Remote-monster
         initRemonCall();
@@ -117,10 +109,22 @@ public class OnCallActivity extends AppCompatActivity {
 
     private void initRemonCallback() {
         // RemonCall, RemonCast 의 초기화가 완료된 후 호출되는 콜백입니다.
-        remonCall.onInit(() -> {});
+        remonCall.onInit(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
 
         // 서버 접속 및 채널 생성이 완료된 이후 호출되는 콜백입니다.
-        remonCall.onConnect(chid -> {});
+        remonCall.onConnect(chid -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
 
         // 다른 사용자와 Peer 연결이 완료된 이후 호출되는 콜백입니다.
         remonCall.onComplete(() -> {
@@ -133,8 +137,8 @@ public class OnCallActivity extends AppCompatActivity {
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
-                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, 0);
-                Log.d("윤미: 녹음시작이다!","start");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 0);
+                Log.d("윤미: 녹음시작이다!", "start");
             }
             captionCreator = new CaptionCreator(handler);
             try {
@@ -176,9 +180,7 @@ public class OnCallActivity extends AppCompatActivity {
         });
 
         // 연결된 peer 간에 메시지를 전달받았을 때 호출되는 콜백입니다.
-        remonCall.onMessage(msg -> {
-            addCaption(msg);
-        });
+        remonCall.onMessage(this::addCaption);
     }
 
     @Override
@@ -188,7 +190,7 @@ public class OnCallActivity extends AppCompatActivity {
         }
         super.onDestroy();
         // 영웅 추가 - 녹음 정지
-        if (captionCreator != null){
+        if (captionCreator != null) {
             captionCreator.stopRecording();
         }
     }
@@ -214,37 +216,37 @@ public class OnCallActivity extends AppCompatActivity {
         }
     }
 
-    public void addCaption(String str){
+    public void addCaption(String str) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (!is_English(str)){
-                    if (!list.isEmpty() && (list.get(list.size()-1) + str).length() < 14) {
-                        list.set(list.size()-1, list.get(list.size()-1) + " " + str);
-                    } else {
-                        list.add(str) ;
-                    }
-                    binding.recyclerView.smoothScrollToPosition(binding.recyclerView.getAdapter().getItemCount() - 1);
+                if (!is_English(str)) {
+//                    if (!list.isEmpty() && (list.get(list.size()-1) + str).length() < 14) {
+//                        list.set(list.size()-1, list.get(list.size()-1) + " " + str);
+//                    } else {
+                    list.add(str);
+//                    }
 //                    adapter.notifyDataSetChanged();
                     // List 반영
                     adapter.notifyItemInserted(list.size());
+                    binding.recyclerView.smoothScrollToPosition(binding.recyclerView.getAdapter().getItemCount() - 1);
 //                    adapter.notifyItemInserted();
                 }
             }
         });
     }
 
-    public boolean is_English(String str){
-        for (int i=0; i < str.length(); i++){
+    public boolean is_English(String str) {
+        for (int i = 0; i < str.length(); i++) {
             int index = str.charAt(i);
-            if (index >= 65 && index <= 122){
+            if (index >= 65 && index <= 122) {
                 return true;
             }
         }
         return false;
     }
 
-    public String getNameById(String id){
+    public String getNameById(String id) {
         return null;
     }
 }

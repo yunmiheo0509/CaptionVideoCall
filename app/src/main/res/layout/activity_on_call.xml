@@ -32,13 +32,35 @@
 
             </RelativeLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
+                android:layout_width="0dp"
+                android:layout_height="130sp"
+                android:background="@drawable/gradatien_recyclerview"
+                app:layout_constraintBottom_toTopOf="@id/bottom_const"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="130sp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@id/bottom_const"
+                app:layout_constraintEnd_toStartOf="@+id/layoutLocal"
+                app:layout_constraintStart_toStartOf="@id/constraintLayout" />
+
+
             <RelativeLayout
                 android:id="@+id/layoutLocal"
-                android:layout_width="100dp"
-                android:layout_height="120dp"
+                android:layout_width="110dp"
+                android:layout_height="0dp"
                 android:layout_margin="10dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
                 app:layout_constraintDimensionRatio="H,1:1.33"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -48,13 +70,6 @@
                     android:layout_height="match_parent" />
             </RelativeLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="160sp"
-                android:background="@drawable/gradatien_recyclerview"
-                app:layout_constraintBottom_toTopOf="@id/bottom_const"
-                app:layout_constraintStart_toStartOf="@id/constraintLayout" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/bottom_const"
